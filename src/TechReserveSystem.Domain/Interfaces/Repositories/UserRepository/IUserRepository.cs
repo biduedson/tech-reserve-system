@@ -1,6 +1,6 @@
 using TechReserveSystem.Domain.Entities;
 
-namespace TechReserveSystem.Domain.Interfaces.Repositories
+namespace TechReserveSystem.Domain.Interfaces.Repositories.UserRepository
 {
     public interface IUserRepository
     {
