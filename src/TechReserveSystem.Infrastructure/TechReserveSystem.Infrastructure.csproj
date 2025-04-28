@@ -5,6 +5,18 @@
     <ProjectReference Include="..\TechReserveSystem.Application\TechReserveSystem.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.13">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.13" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.2" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
