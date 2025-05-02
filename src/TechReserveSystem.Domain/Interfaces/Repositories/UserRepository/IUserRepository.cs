@@ -4,13 +4,13 @@ namespace TechReserveSystem.Domain.Interfaces.Repositories.UserRepository
 {
     public interface IUserRepository
     {
-        Task<User> GetByIdAsync(Guid id);
-        Task<User?> GetByEmailAsync(string email);
-        Task<User?> GetByNameAsync(string name);
+        Task<User?> GetById(Guid id);
+        Task<User?> GetByEmail(string email);
+        Task<User?> GetByName(string name);
         Task<bool> ExistActiveUserWithEmail(string email);
-        Task<IEnumerable<User>> GetAllAsync();
-        Task AddAsync(User user);
-        Task UpdateAsync(User user);
-        Task DeleteAsync(Guid id);
+        Task<IEnumerable<User>> GetAll();
+        Task Add(User user);
+        void Update(User user);
+        void Delete(User user);
     }
 }
