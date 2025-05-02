@@ -39,7 +39,7 @@ namespace TechReserveSystem.Application.UseCases.User.Register
 
             user.Password = _passwordEncripter.Encrypt(request.Password);
 
-            await _repository.AddAsync(user);
+            await _repository.Add(user);
             await _unitOfWork.Commit();
 
             return new ResponseRegisteredUserJson
