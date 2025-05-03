@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TechReserveSystem.Application.Interfaces.Authentication;
+using TechReserveSystem.Application.Interfaces.Services.Authentication;
 using TechReserveSystem.Infrastructure.Configuration;
 
 namespace TechReserveSystem.Infrastructure.Services.Authentication
@@ -38,6 +38,14 @@ namespace TechReserveSystem.Infrastructure.Services.Authentication
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public DateTime ExperiOn(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(token);
+
+            return jwtToken.ValidTo;
         }
     }
 }
