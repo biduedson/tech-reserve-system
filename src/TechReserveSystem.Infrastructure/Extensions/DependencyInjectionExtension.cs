@@ -1,11 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TechReserveSystem.Application.Interfaces.Authentication;
 using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
+using TechReserveSystem.Infrastructure.Configuration;
 using TechReserveSystem.Infrastructure.Data.Context;
 using TechReserveSystem.Infrastructure.Data.Repositories;
 using TechReserveSystem.Infrastructure.Data.Repositories.UserRepository;
+using TechReserveSystem.Infrastructure.Services.Authentication;
 
 namespace TechReserveSystem.Infrastructure.Extensions
 {
@@ -19,7 +22,9 @@ namespace TechReserveSystem.Infrastructure.Extensions
             {
                 appDbContextOption.UseMySql(connectionString, serverVersion); ;
             });
-
+            var jwtSection = configuration.GetSection("Jwt");
+            services.Configure<JwtSettings>(jwtSection);
+            services.AddSingleton<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
