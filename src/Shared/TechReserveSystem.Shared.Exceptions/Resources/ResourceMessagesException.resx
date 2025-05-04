@@ -149,4 +149,16 @@
     <value>The password must be longer than 6 characters.</value>
     <comment/>
   </data>
+  <data name="AUTHORIZATION_ERROR" xml:space="preserve">
+    <value>You are not authorized to access this resource</value>
+    <comment/>
+  </data>
+  <data name="INVALID_JWT" xml:space="preserve">
+    <value>Token invalide ou absent.</value>
+    <comment/>
+  </data>
+  <data name="TOKEN_EXPIRED" xml:space="preserve">
+    <value>Your token has expired.</value>
+    <comment/>
+  </data>
 </root>
