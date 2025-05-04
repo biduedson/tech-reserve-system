@@ -2,11 +2,10 @@ using AutoMapper;
 using TechReserveSystem.Application.Interfaces.Services.Authentication;
 using TechReserveSystem.Application.Interfaces.Services.Security;
 using TechReserveSystem.Application.Interfaces.UseCases.Login;
-using TechReserveSystem.Application.Services.Cryptography;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
 using TechReserveSystem.Shared.Communication.Request.Authentication;
 using TechReserveSystem.Shared.Communication.Response.Authentication;
-using TechReserveSystem.Shared.Exceptions.ExceptionsBase;
+using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
 using TechReserveSystem.Shared.Exceptions.Resources;
 
 namespace TechReserveSystem.Application.UseCases.Login
