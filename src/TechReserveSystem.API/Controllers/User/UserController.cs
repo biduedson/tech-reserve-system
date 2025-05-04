@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechReserveSystem.Application.UseCases.User.Register;
 using TechReserveSystem.Shared.Communication.Request.User;
