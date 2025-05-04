@@ -1,7 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TechReserveSystem.Application.Interfaces.UseCases.Login;
 using TechReserveSystem.Application.Services.AutoMapper;
-using TechReserveSystem.Application.Services.Cryptography;
+using TechReserveSystem.Application.UseCases.Login;
 using TechReserveSystem.Application.UseCases.User.Register;
 
 namespace TechReserveSystem.Application.Extensions
@@ -10,7 +11,6 @@ namespace TechReserveSystem.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
-            AddPasswordEncrypter(services, configuration);
             AddAutoMapper(services);
             AddUseCases(services);
         }
@@ -26,12 +26,8 @@ namespace TechReserveSystem.Application.Extensions
         private static void AddUseCases(IServiceCollection services)
         {
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
+            services.AddScoped<ILoginUseCase, LoginUseCase>();
         }
 
-        private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)
-        {
-            var AdditionalKey = configuration.GetValue<string>("Settings:Passwords:AdditionalKey");
-            services.AddScoped(option => new PasswordEncripter(AdditionalKey!));
-        }
     }
 }
