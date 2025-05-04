@@ -22,6 +22,7 @@ namespace TechReserveSystem.Infrastructure.Extensions
         {
 
             AddDbContextConfig(services, configuration);
+            AddTokenValidationService.ConfigAuthentication(services, configuration);
             AddTokenService(services, configuration);
             AddPasswordEncryptService(services, configuration);
             AddRepositories(services, configuration);
@@ -36,15 +37,6 @@ namespace TechReserveSystem.Infrastructure.Extensions
             });
         }
 
-        private static void AddconfigAuthenticationJwt(IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddSingleton(provider =>
-            {
-                var config = provider.GetRequiredService<IOptions<JwtSettings>>();
-                AddTokenValidationService.ConfigAuthentication(services, config);
-                return config;
-            });
-        }
 
         private static void AddTokenService(IServiceCollection services, IConfiguration configuration)
         {
