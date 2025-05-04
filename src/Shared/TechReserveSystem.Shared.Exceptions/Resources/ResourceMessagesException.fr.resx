@@ -134,7 +134,7 @@
     <comment/>
   </data>
   <data name="PASSWORD_EMPTY" xml:space="preserve">
-    <value>Le mot de passe doit comporter plus de 6 caracteres.</value>
+    <value>Le  passe ne doit pas etre vide.</value>
     <comment/>
   </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
@@ -143,6 +143,10 @@
   </data>
   <data name="INVALID_CREDENTIALS" xml:space="preserve">
     <value>Nom d'utilisateur ou mot de passe incorrect.</value>
+    <comment/>
+  </data>
+  <data name="PASSWORD_LENGTH_INVALID" xml:space="preserve">
+    <value>Le mot de passe doit comporter plus de 6 caractères.</value>
     <comment/>
   </data>
 </root>

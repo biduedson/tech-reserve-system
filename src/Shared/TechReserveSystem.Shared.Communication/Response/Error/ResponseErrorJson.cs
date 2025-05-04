@@ -1,13 +1,12 @@
-namespace TechReserveSystem.Shared.Communication.Response
+namespace TechReserveSystem.Shared.Communication.Response.Error
 {
     public class ResponseErrorJson
     {
         public IList<string> Errors { get; set; }
-        public ResponseErrorJson(IList<string> errors) => Errors = errors;
 
+        public ResponseErrorJson(IList<string> errors) => Errors = errors;
         public ResponseErrorJson(string error)
         {
-
             Errors =
             [
                 error

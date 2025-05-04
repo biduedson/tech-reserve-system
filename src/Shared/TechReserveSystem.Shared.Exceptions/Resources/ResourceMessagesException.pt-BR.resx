@@ -122,7 +122,7 @@
     <comment/>
   </data>
   <data name="EMAIL_EMPTY" xml:space="preserve">
-    <value>O nome não pode estar vazio.</value>
+    <value>O e-mail não pode estar vazio.</value>
     <comment/>
   </data>
   <data name="EMAIL_INVALID" xml:space="preserve">
@@ -134,7 +134,7 @@
     <comment/>
   </data>
   <data name="PASSWORD_EMPTY" xml:space="preserve">
-    <value>A senha deve ter mais de 6 caracteres.</value>
+    <value>A senha não pode estar vazia.</value>
     <comment/>
   </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
@@ -143,6 +143,10 @@
   </data>
   <data name="INVALID_CREDENTIALS" xml:space="preserve">
     <value>Usuário ou senha incorretos.</value>
+    <comment/>
+  </data>
+  <data name="PASSWORD_LENGTH_INVALID" xml:space="preserve">
+    <value>A senha deve ter mais de 6 caracteres.</value>
     <comment/>
   </data>
 </root>

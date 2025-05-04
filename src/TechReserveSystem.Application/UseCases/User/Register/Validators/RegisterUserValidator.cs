@@ -1,5 +1,6 @@
 using FluentValidation;
 using TechReserveSystem.Shared.Communication.Request.User;
+using TechReserveSystem.Shared.Exceptions.Resources;
 
 namespace TechReserveSystem.Application.UseCases.User.Register.Validators
 {
@@ -7,9 +8,10 @@ namespace TechReserveSystem.Application.UseCases.User.Register.Validators
     {
         public RegisterUserValidator()
         {
-            RuleFor(user => user.Name).NotEmpty().WithMessage("");
-            RuleFor(user => user.Email).NotEmpty().WithMessage("");
-            RuleFor(user => user.Password.Length).GreaterThanOrEqualTo(6).WithMessage("");
+            RuleFor(user => user.Name).NotEmpty().WithMessage(ResourceMessagesException.NAME_EMPTY);
+            RuleFor(user => user.Email).NotEmpty().WithMessage(ResourceMessagesException.EMAIL_EMPTY);
+            RuleFor(user => user.Password).NotEmpty().WithMessage(ResourceMessagesException.PASSWORD_EMPTY);
+            RuleFor(user => user.Password.Length).GreaterThanOrEqualTo(6).WithMessage(ResourceMessagesException.PASSWORD_LENGTH_INVALID);
         }
     }
 }

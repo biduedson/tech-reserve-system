@@ -6,7 +6,7 @@ using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
 using TechReserveSystem.Shared.Communication.Request.User;
 using TechReserveSystem.Shared.Communication.Response.User;
-using TechReserveSystem.Shared.Exceptions.ExceptionsBase;
+using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
 using TechReserveSystem.Shared.Exceptions.Resources;
 
 namespace TechReserveSystem.Application.UseCases.User.Register

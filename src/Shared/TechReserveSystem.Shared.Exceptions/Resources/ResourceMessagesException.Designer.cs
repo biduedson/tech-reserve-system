@@ -37,7 +37,7 @@ namespace TechReserveSystem.Shared.Exceptions.Resources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.ResourceMessagesException", typeof(ResourceMessagesException).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TechReserveSystem.Shared.Exceptions.Resources.ResourceMessagesException", typeof(ResourceMessagesException).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -135,6 +135,13 @@ namespace TechReserveSystem.Shared.Exceptions.Resources
             }
         }
 
+        public static string PASSWORD_LENGTH_INVALID
+        {
+            get
+            {
+                return ResourceManager.GetString("PASSWORD_LENGTH_INVALID", resourceCulture);
+            }
+        }
 
     }
 }
