@@ -1,5 +1,5 @@
 using AutoMapper;
-using TechReserveSystem.Application.Services.Cryptography;
+using TechReserveSystem.Application.Interfaces.Services.Security;
 using TechReserveSystem.Application.UseCases.User.Register.Validators;
 using TechReserveSystem.Domain.Entities;
 using TechReserveSystem.Domain.Interfaces.Repositories;
@@ -16,19 +16,19 @@ namespace TechReserveSystem.Application.UseCases.User.Register
         public readonly IUserRepository _repository;
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
-        public readonly PasswordEncripter _passwordEncripter;
+        public readonly IPasswordHashService _passwordHashService;
 
         public RegisterUserUseCase(
             IUserRepository userRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper,
-            PasswordEncripter passwordEncripter
+            IPasswordHashService passwordHashService
         )
         {
             _repository = userRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _passwordEncripter = passwordEncripter;
+            _passwordHashService = passwordHashService;
         }
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
@@ -37,7 +37,7 @@ namespace TechReserveSystem.Application.UseCases.User.Register
 
             var user = _mapper.Map<Domain.Entities.User>(request);
 
-            user.Password = _passwordEncripter.Encrypt(request.Password);
+            user.Password = _passwordHashService.GeneratePasswordEncrypt(request.Password);
 
             await _repository.Add(user);
             await _unitOfWork.Commit();

@@ -40,6 +40,7 @@ namespace TechReserveSystem.Application.UseCases.Login
         private async Task<LoginResponse> Authenticate(UserLoginRequest request)
         {
             var passwordHash = _passwordHashService.GeneratePasswordEncrypt(request.Password);
+
             var user = await _repository.GetByEmail(request.Email);
 
             if (user == null || user.Password != passwordHash)
