@@ -149,4 +149,16 @@
     <value>Le mot de passe doit comporter plus de 6 caractères.</value>
     <comment/>
   </data>
+  <data name="AUTHORIZATION_ERROR" xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à accéder à cette ressource.</value>
+    <comment/>
+  </data>
+  <data name="INVALID_JWT" xml:space="preserve">
+    <value>Token invalide ou absent.</value>
+    <comment/>
+  </data>
+  <data name="TOKEN_EXPIRED" xml:space="preserve">
+    <value>Votre token a expiré.</value>
+    <comment/>
+  </data>
 </root>

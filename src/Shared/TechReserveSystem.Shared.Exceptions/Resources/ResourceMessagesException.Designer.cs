@@ -143,5 +143,29 @@ namespace TechReserveSystem.Shared.Exceptions.Resources
             }
         }
 
+        public static string AUTHORIZATION_ERROR
+        {
+            get
+            {
+                return ResourceManager.GetString("AUTHORIZATION_ERROR", resourceCulture);
+            }
+        }
+
+        public static string INVALID_JWT
+        {
+            get
+            {
+                return ResourceManager.GetString("INVALID_JWT", resourceCulture);
+            }
+        }
+
+        public static string TOKEN_EXPIRED
+        {
+            get
+            {
+                return ResourceManager.GetString("TOKEN_EXPIRED", resourceCulture);
+            }
+        }
+
     }
 }

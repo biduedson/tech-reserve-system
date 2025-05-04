@@ -149,4 +149,16 @@
     <value>A senha deve ter mais de 6 caracteres.</value>
     <comment/>
   </data>
+  <data name="AUTHORIZATION_ERROR" xml:space="preserve">
+    <value>Não tem autorização para aceder a este recurso.</value>
+    <comment/>
+  </data>
+  <data name="INVALID_JWT" xml:space="preserve">
+    <value>Token inválido ou ausente.</value>
+    <comment/>
+  </data>
+  <data name="TOKEN_EXPIRED" xml:space="preserve">
+    <value>O seu token expirou.</value>
+    <comment/>
+  </data>
 </root>
