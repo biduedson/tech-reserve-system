@@ -1,4 +1,5 @@
 using DotNetEnv;
+using TechReserveSystem.API.Filters;
 using TechReserveSystem.Application.Extensions;
 using TechReserveSystem.Infrastructure.Extensions;
 
@@ -13,8 +14,8 @@ builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddAuthentication(); // Adiciona serviços de autenticação
-builder.Services.AddAuthorization(); // Adiciona serviços de autorização
+builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+
 
 
 builder.Services.AddEndpointsApiExplorer();
