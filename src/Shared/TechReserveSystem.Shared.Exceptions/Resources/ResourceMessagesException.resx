@@ -134,7 +134,7 @@
     <comment/>
   </data>
   <data name="PASSWORD_EMPTY" xml:space="preserve">
-    <value>The password must be longer than 6 characters.</value>
+    <value>The password must must not be empty.</value>
     <comment/>
   </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
@@ -143,6 +143,10 @@
   </data>
   <data name="INVALID_CREDENTIALS" xml:space="preserve">
     <value>Incorrect username or password.</value>
+    <comment/>
+  </data>
+  <data name="PASSWORD_LENGTH_INVALID" xml:space="preserve">
+    <value>The password must be longer than 6 characters.</value>
     <comment/>
   </data>
 </root>
