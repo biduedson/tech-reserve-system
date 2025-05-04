@@ -1,4 +1,4 @@
-namespace TechReserveSystem.Shared.Exceptions.ExceptionsBase
+namespace TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation
 {
     public class ErrorOnValidationException : MyTechReserveSystemException
     {
