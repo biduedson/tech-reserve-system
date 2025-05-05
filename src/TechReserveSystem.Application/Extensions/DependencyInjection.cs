@@ -1,7 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TechReserveSystem.Application.Interfaces.UseCases.Equipment;
 using TechReserveSystem.Application.Interfaces.UseCases.Login;
 using TechReserveSystem.Application.Services.AutoMapper;
+using TechReserveSystem.Application.UseCases.Equipment;
 using TechReserveSystem.Application.UseCases.Login;
 using TechReserveSystem.Application.UseCases.User.Register;
 
@@ -26,6 +28,7 @@ namespace TechReserveSystem.Application.Extensions
         private static void AddUseCases(IServiceCollection services)
         {
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
+            services.AddScoped<IRegisterEquipmentUseCase, RegisterEquipmentUseCase>();
             services.AddScoped<ILoginUseCase, LoginUseCase>();
         }
 
