@@ -5,10 +5,14 @@ using Microsoft.Extensions.Options;
 using TechReserveSystem.Application.Interfaces.Services.Authentication;
 using TechReserveSystem.Application.Interfaces.Services.Security;
 using TechReserveSystem.Domain.Interfaces.Repositories;
+using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentCategoryRepository;
+using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentRepository;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
 using TechReserveSystem.Infrastructure.Configuration;
 using TechReserveSystem.Infrastructure.Data.Context;
 using TechReserveSystem.Infrastructure.Data.Repositories;
+using TechReserveSystem.Infrastructure.Data.Repositories.EquipmentCategoryRepository;
+using TechReserveSystem.Infrastructure.Data.Repositories.EquipmentRepository;
 using TechReserveSystem.Infrastructure.Data.Repositories.UserRepository;
 using TechReserveSystem.Infrastructure.Security.Authentication;
 using TechReserveSystem.Infrastructure.Services.Authentication;
@@ -48,6 +52,8 @@ namespace TechReserveSystem.Infrastructure.Extensions
         private static void AddRepositories(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEquipmentRepository, EquipmentRepository>();
+            services.AddScoped<IEquipmentCategoryRepository, EquipmentCategoryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
