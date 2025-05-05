@@ -13,10 +13,10 @@ namespace TechReserveSystem.Application.UseCases.User.Register
 {
     public class RegisterUserUseCase : IRegisterUserUseCase
     {
-        public readonly IUserRepository _repository;
-        public readonly IUnitOfWork _unitOfWork;
-        public readonly IMapper _mapper;
-        public readonly IPasswordHashService _passwordHashService;
+        private readonly IUserRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly IPasswordHashService _passwordHashService;
 
         public RegisterUserUseCase(
             IUserRepository userRepository,
@@ -64,5 +64,6 @@ namespace TechReserveSystem.Application.UseCases.User.Register
                 throw new ErrorOnValidationException(errorMessages);
             }
         }
+
     }
 }
