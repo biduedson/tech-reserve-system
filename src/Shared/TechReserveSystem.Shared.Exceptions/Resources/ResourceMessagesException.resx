@@ -161,4 +161,24 @@
     <value>Your token has expired.</value>
     <comment/>
   </data>
+  <data name="AVAILABLE_QUANTITY_EQUIPMENT_INVALID" xml:space="preserve">
+    <value>The available quantity must be greater than 0.</value>
+    <comment/>
+  </data>
+  <data name="DESCRIPTION_EMPTY" xml:space="preserve">
+    <value>The description cannot be empty.</value>
+    <comment/>
+  </data>
+  <data name="CATEGORY_ID_EMPTY" xml:space="preserve">
+    <value>The category ID must not be empty.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_ALREADY_REGISTERED" xml:space="preserve">
+    <value>There is already a registered equipment with this name.</value>
+    <comment/>
+  </data>
+  <data name="CATEGORY_NOT_FOUND" xml:space="preserve">
+    <value>the category does not exist.</value>
+    <comment/>
+  </data>
 </root>

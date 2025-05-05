@@ -167,5 +167,43 @@ namespace TechReserveSystem.Shared.Exceptions.Resources
             }
         }
 
+        public static string AVAILABLE_QUANTITY_EQUIPMENT_INVALID
+        {
+            get
+            {
+                return ResourceManager.GetString("AVAILABLE_QUANTITY_EQUIPMENT_INVALID", resourceCulture);
+            }
+        }
+
+        public static string DESCRIPTION_EMPTY
+        {
+            get
+            {
+                return ResourceManager.GetString("DESCRIPTION_EMPTY", resourceCulture);
+            }
+        }
+
+        public static string CATEGORY_ID_EMPTY
+        {
+            get
+            {
+                return ResourceManager.GetString("CATEGORY_ID_EMPTY", resourceCulture);
+            }
+        }
+        public static string EQUIPMENT_ALREADY_REGISTERED
+        {
+            get
+            {
+                return ResourceManager.GetString("EQUIPMENT_ALREADY_REGISTERED", resourceCulture);
+            }
+        }
+
+        public static string CATEGORY_NOT_FOUND
+        {
+            get
+            {
+                return ResourceManager.GetString("CATEGORY_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }
