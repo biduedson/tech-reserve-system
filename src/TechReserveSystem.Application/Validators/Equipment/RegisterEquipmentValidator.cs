@@ -2,7 +2,7 @@ using FluentValidation;
 using TechReserveSystem.Shared.Communication.Request.Equipment;
 using TechReserveSystem.Shared.Exceptions.Resources;
 
-namespace TechReserveSystem.Application.UseCases.Equipment.Validators
+namespace TechReserveSystem.Application.Validators.Equipment
 {
     public class RegisterEquipmentValidator : AbstractValidator<RequestRegisterEquipmentJson>
     {
@@ -20,7 +20,9 @@ namespace TechReserveSystem.Application.UseCases.Equipment.Validators
             .NotEmpty().WithMessage(ResourceMessagesException.CATEGORY_ID_EMPTY)
             .NotNull().WithMessage(ResourceMessagesException.CATEGORY_ID_EMPTY);
 
-            RuleFor(equipment => equipment.AvailableQuantity).NotEmpty().WithMessage(ResourceMessagesException.AVAILABLE_QUANTITY_EQUIPMENT_EMPTY).Custom((quantity, context) =>
+            RuleFor(equipment => equipment.AvailableQuantity)
+            .NotEmpty().WithMessage(ResourceMessagesException.AVAILABLE_QUANTITY_EQUIPMENT_EMPTY)
+            .Custom((quantity, context) =>
             {
                 if (quantity < 1)
                 {

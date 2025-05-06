@@ -2,7 +2,7 @@ using FluentValidation;
 using TechReserveSystem.Shared.Communication.Request.User;
 using TechReserveSystem.Shared.Exceptions.Resources;
 
-namespace TechReserveSystem.Application.UseCases.User.Register.Validators
+namespace TechReserveSystem.Application.Validators.User
 {
     public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
     {

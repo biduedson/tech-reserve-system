@@ -1,6 +1,6 @@
 using AutoMapper;
 using TechReserveSystem.Application.Interfaces.UseCases.EquipmentCategory;
-using TechReserveSystem.Application.UseCases.EquipmentCategory.Validators;
+using TechReserveSystem.Application.Validators.EquipmentCategory;
 using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentCategoryRepository;
 using TechReserveSystem.Shared.Communication.Request.EquipmentCategory;

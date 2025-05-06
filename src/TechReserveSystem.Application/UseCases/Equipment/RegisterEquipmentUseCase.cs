@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using AutoMapper;
 using TechReserveSystem.Application.Interfaces.UseCases.Equipment;
-using TechReserveSystem.Application.UseCases.Equipment.Validators;
+using TechReserveSystem.Application.Validators.Equipment;
 using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentCategoryRepository;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentRepository;

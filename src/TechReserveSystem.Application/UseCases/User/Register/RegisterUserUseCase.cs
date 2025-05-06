@@ -1,7 +1,6 @@
 using AutoMapper;
 using TechReserveSystem.Application.Interfaces.Services.Security;
-using TechReserveSystem.Application.UseCases.User.Register.Validators;
-using TechReserveSystem.Domain.Entities;
+using TechReserveSystem.Application.Validators.User;
 using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
 using TechReserveSystem.Shared.Communication.Request.User;
