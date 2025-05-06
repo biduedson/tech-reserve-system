@@ -177,4 +177,8 @@
     <value>La catégorie n'existe pas.</value>
     <comment/>
   </data>
+  <data name="CATEGORY_ALREADY_REGISTERED" xml:space="preserve">
+    <value>Un catégorie avec ce nom est déjà enregistré.</value>
+    <comment/>
+  </data>
 </root>
