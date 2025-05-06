@@ -205,5 +205,13 @@ namespace TechReserveSystem.Shared.Exceptions.Resources
                 return ResourceManager.GetString("CATEGORY_NOT_FOUND", resourceCulture);
             }
         }
+
+        public static string CATEGORY_ALREADY_REGISTERED
+        {
+            get
+            {
+                return ResourceManager.GetString("CATEGORY_ALREADY_REGISTERED", resourceCulture);
+            }
+        }
     }
 }

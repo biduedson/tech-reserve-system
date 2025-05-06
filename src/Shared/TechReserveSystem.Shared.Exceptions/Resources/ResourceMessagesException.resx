@@ -181,4 +181,8 @@
     <value>the category does not exist.</value>
     <comment/>
   </data>
+  <data name="CATEGORY_ALREADY_REGISTERED" xml:space="preserve">
+    <value>There is already a registered category with this name.</value>
+    <comment/>
+  </data>
 </root>

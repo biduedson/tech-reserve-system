@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
-    <value>E-mail ja registrado</value>
+    <value>E-mail ja registrado.</value>
     <comment/>
   </data>
   <data name="EMAIL_EMPTY" xml:space="preserve">
@@ -179,6 +179,10 @@
   </data>
   <data name="CATEGORY_NOT_FOUND" xml:space="preserve">
     <value>A categoria não existe.</value>
+    <comment/>
+  </data>
+  <data name="CATEGORY_ALREADY_REGISTERED" xml:space="preserve">
+    <value>Já existe um categoria registrada com este nome.</value>
     <comment/>
   </data>
 </root>
