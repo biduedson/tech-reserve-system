@@ -181,4 +181,8 @@
     <value>Un catégorie avec ce nom est déjà enregistré.</value>
     <comment/>
   </data>
+  <data name="AVAILABLE_QUANTITY_EQUIPMENT_EMPTY" xml:space="preserve">
+    <value>La quantité ne doit pas être vide.</value>
+    <comment/>
+  </data>
 </root>

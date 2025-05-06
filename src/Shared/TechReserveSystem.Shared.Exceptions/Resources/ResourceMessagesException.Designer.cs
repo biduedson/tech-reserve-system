@@ -213,5 +213,14 @@ namespace TechReserveSystem.Shared.Exceptions.Resources
                 return ResourceManager.GetString("CATEGORY_ALREADY_REGISTERED", resourceCulture);
             }
         }
+        public static string AVAILABLE_QUANTITY_EQUIPMENT_EMPTY
+        {
+            get
+            {
+                return ResourceManager.GetString("AVAILABLE_QUANTITY_EQUIPMENT_EMPTY", resourceCulture);
+            }
+        }
+
+
     }
 }

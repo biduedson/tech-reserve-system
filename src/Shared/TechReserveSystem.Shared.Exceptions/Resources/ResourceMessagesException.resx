@@ -185,4 +185,8 @@
     <value>There is already a registered category with this name.</value>
     <comment/>
   </data>
+  <data name="AVAILABLE_QUANTITY_EQUIPMENT_EMPTY" xml:space="preserve">
+    <value>The quantity must not be empty.</value>
+    <comment/>
+  </data>
 </root>

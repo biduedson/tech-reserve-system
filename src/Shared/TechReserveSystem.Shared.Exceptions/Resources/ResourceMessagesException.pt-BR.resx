@@ -185,4 +185,8 @@
     <value>O ID da categoria não pode estar vazio.</value>
     <comment/>
   </data>
+  <data name="AVAILABLE_QUANTITY_EQUIPMENT_EMPTY" xml:space="preserve">
+    <value>A quantidade não pode estar vazia.</value>
+    <comment/>
+  </data>
 </root>
