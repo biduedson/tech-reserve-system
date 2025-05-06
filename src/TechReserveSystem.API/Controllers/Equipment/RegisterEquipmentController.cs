@@ -7,9 +7,9 @@ using TechReserveSystem.Shared.Communication.Response.Equipment;
 namespace TechReserveSystem.API.Controllers.Equipment
 {
     //[Authorize(Roles = "Admin")]
-    [Route("[controller]")]
+    [Route("api/equipment/register")]
     [ApiController]
-    public class EquipmentController : ControllerBase
+    public class RegisterEquipmentController : ControllerBase
     {
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredEquipmentJson), StatusCodes.Status201Created)]

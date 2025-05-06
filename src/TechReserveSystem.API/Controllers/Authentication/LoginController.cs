@@ -12,7 +12,7 @@ namespace TechReserveSystem.API.Controllers.Authentication
         {
             _loginUseCase = loginUseCase;
         }
-        [HttpPost("login")]
+        [HttpPost("api/auth/login")]
         [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> Login([FromBody] UserLoginRequest request, [FromServices] ILoginUseCase useCase)
