@@ -185,4 +185,8 @@
     <value>Já existe um categoria registrada com este nome.</value>
     <comment/>
   </data>
+  <data name="AVAILABLE_QUANTITY_EQUIPMENT_EMPTY" xml:space="preserve">
+    <value>A quantidade tem de estar preenchida.</value>
+    <comment/>
+  </data>
 </root>
