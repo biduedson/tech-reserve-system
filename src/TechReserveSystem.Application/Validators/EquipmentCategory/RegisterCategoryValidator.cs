@@ -2,7 +2,7 @@ using FluentValidation;
 using TechReserveSystem.Shared.Communication.Request.EquipmentCategory;
 using TechReserveSystem.Shared.Exceptions.Resources;
 
-namespace TechReserveSystem.Application.UseCases.EquipmentCategory.Validators
+namespace TechReserveSystem.Application.Validators.EquipmentCategory
 {
     public class RegisterCategoryValidator : AbstractValidator<EquipmentCategoryRegisterRequest>
     {
