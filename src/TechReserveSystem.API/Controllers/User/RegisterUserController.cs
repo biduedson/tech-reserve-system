@@ -6,9 +6,9 @@ using TechReserveSystem.Shared.Communication.Response.User;
 
 namespace TechReserveSystem.API.Controllers.User
 {
-    [Route("[controller]")]
+    [Route("api/user/register")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class RegisterUserController : ControllerBase
     {
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]

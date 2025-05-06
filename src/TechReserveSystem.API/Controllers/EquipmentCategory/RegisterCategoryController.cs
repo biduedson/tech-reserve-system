@@ -5,9 +5,9 @@ using TechReserveSystem.Shared.Communication.Response.EquipmentCategory;
 
 namespace TechReserveSystem.API.Controllers.EquipmentCategory
 {
-  [Route("[controller]")]
+  [Route("api/equipment-category/register")]
   [ApiController]
-  public class RegisterEquipmentCategoryController : ControllerBase
+  public class RegisterCategoryController : ControllerBase
   {
     [HttpPost]
     [ProducesResponseType(typeof(RegisterEquipmentCategoryResponse), StatusCodes.Status201Created)]
