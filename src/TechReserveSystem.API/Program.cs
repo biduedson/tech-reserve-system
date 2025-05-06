@@ -1,5 +1,6 @@
 using DotNetEnv;
 using TechReserveSystem.API.Filters;
+using TechReserveSystem.API.Middleware;
 using TechReserveSystem.Application.Extensions;
 using TechReserveSystem.Infrastructure.Extensions;
 
@@ -29,7 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseMiddleware<CultureMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
