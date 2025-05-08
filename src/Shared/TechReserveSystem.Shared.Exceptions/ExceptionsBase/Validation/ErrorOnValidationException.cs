@@ -7,5 +7,6 @@ namespace TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation
         {
             ErrorMessages = errorMessages;
         }
+
     }
 }

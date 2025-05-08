@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -117,132 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
-    <value>E-mail déjà enregistré.</value>
+  <data name="RESERVATION_SUCCESS" xml:space="preserve">
+    <value>Reservation successfully completed.	</value>
     <comment/>
   </data>
-  <data name="EMAIL_EMPTY" xml:space="preserve">
-    <value>Le e-mail ne doit pas etre vide.</value>
+  <data name="RESERVATION_CANCELED&#x9;" xml:space="preserve">
+    <value>The reservation has been canceled.	</value>
     <comment/>
   </data>
-  <data name="EMAIL_INVALID" xml:space="preserve">
-    <value>L´adresse electronique n´est pas valide.</value>
-    <comment/>
-  </data>
-  <data name="NAME_EMPTY" xml:space="preserve">
-    <value>Le nom ne peut pas etre vide.</value>
-    <comment/>
-  </data>
-  <data name="PASSWORD_EMPTY" xml:space="preserve">
-    <value>Le  passe ne doit pas etre vide.</value>
-    <comment/>
-  </data>
-  <data name="UNKNOWN_ERROR" xml:space="preserve">
-    <value>Erreur inconnue.</value>
-    <comment/>
-  </data>
-  <data name="INVALID_CREDENTIALS" xml:space="preserve">
-    <value>Nom d'utilisateur ou mot de passe incorrect.</value>
-    <comment/>
-  </data>
-  <data name="PASSWORD_LENGTH_INVALID" xml:space="preserve">
-    <value>Le mot de passe doit comporter plus de 6 caractères.</value>
-    <comment/>
-  </data>
-  <data name="AUTHORIZATION_ERROR" xml:space="preserve">
-    <value>Vous n'êtes pas autorisé à accéder à cette ressource.</value>
-    <comment/>
-  </data>
-  <data name="INVALID_JWT" xml:space="preserve">
-    <value>Token invalide ou absent.</value>
-    <comment/>
-  </data>
-  <data name="TOKEN_EXPIRED" xml:space="preserve">
-    <value>Votre token a expiré.</value>
-    <comment/>
-  </data>
-  <data name="DESCRIPTION_EMPTY" xml:space="preserve">
-    <value>La description ne doit pas être vide.</value>
-    <comment/>
-  </data>
-  <data name="CATEGORY_ID_EMPTY" xml:space="preserve">
-    <value>L'identifiant de la catégorie ne doit pas être vide.</value>
-    <comment/>
-  </data>
-  <data name="EQUIPMENT_ALREADY_REGISTERED" xml:space="preserve">
-    <value>Un équipement avec ce nom est déjà enregistré.</value>
-    <comment/>
-  </data>
-  <data name="CATEGORY_NOT_FOUND" xml:space="preserve">
-    <value>La catégorie n'existe pas.</value>
-    <comment/>
-  </data>
-  <data name="CATEGORY_ALREADY_REGISTERED" xml:space="preserve">
-    <value>Un catégorie avec ce nom est déjà enregistré.</value>
-    <comment/>
-  </data>
-  <data name="AVAILABLE_QUANTITY_EQUIPMENT_EMPTY" xml:space="preserve">
-    <value>La quantité ne doit pas être vide.</value>
-    <comment/>
-  </data>
-  <data name="RESERVATION_EXPECTED_RETURN_EMPTY" xml:space="preserve">
-    <value>La date de retour de l’équipement réservé ne peut pas être vide.</value>
-    <comment/>
-  </data>
-  <data name="RESERVATION_EXPECTED_RETURN_INVALID" xml:space="preserve">
-    <value>La date de retour de l’équipement doit être dans un format valide.</value>
-    <comment/>
-  </data>
-  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY " xml:space="preserve">
-    <value>La date de début de la réservation de l’équipement ne peut pas être vide.</value>
-    <comment/>
-  </data>
-  <data name="RESERVATION_EXPECTED_STARTDATE_INVALID" xml:space="preserve">
-    <value>La date de début de la réservation de l’équipement doit être dans un format valide.</value>
-    <comment/>
-  </data>
-  <data name="EQUIPMENT_ID_EMPTY" xml:space="preserve">
-    <value>L’identifiant de l’équipement ne peut pas être vide.</value>
-    <comment/>
-  </data>
-  <data name="USER_ID_EMPTY" xml:space="preserve">
-    <value>L’identifiant de l’utilisateur ne peut pas être vide.</value>
-    <comment/>
-  </data>
-  <data name="USER_ID_INVALID" xml:space="preserve">
-    <value>L’identifiant de l’utilisateur est dans un format invalide.</value>
-    <comment/>
-  </data>
-  <data name="EQUIPMENT_ID_INVALID" xml:space="preserve">
-    <value>L’identifiant de l’équipement est dans un format invalide.</value>
-    <comment/>
-  </data>
-  <data name="RESERVATION_PAST_DATE" xml:space="preserve">
-    <value>L’équipement ne peut pas être réservé pour une date passée.</value>
-    <comment/>
-  </data>
-  <data name="RESERVATION_RETURN_PAST_DATE" xml:space="preserve">
-    <value>La date de retour de l’équipement ne peut pas être dans le passé.</value>
-    <comment/>
-  </data>
-  <data name="RESERVATION_RETURN_BEFORE_START" xml:space="preserve">
-    <value>La date de retour de la réservation ne peut pas être antérieure à la date de début.</value>
-    <comment/>
-  </data>
-  <data name="USER_NOT_FOUND" xml:space="preserve">
-    <value>Utilisateur non trouvé.</value>
-    <comment/>
-  </data>
-  <data name="EQUIPMENT_NOT_FOUND" xml:space="preserve">
-    <value>Équipement non trouvé.</value>
-    <comment/>
-  </data>
-  <data name="RESERVATION_NOT_FOUND" xml:space="preserve">
-    <value>Réservation non trouvée.</value>
-    <comment/>
-  </data>
-  <data name="EQUIPMENT_NOT_AVAILABLE" xml:space="preserve">
-    <value> Aucun équipement disponible pour réservation à la date sélectionnée.</value>
+  <data name="EQUIPMENT_NOT_AVAILABLE&#x9;" xml:space="preserve">
+    <value>No equipment available for reservation on the selected date.	</value>
     <comment/>
   </data>
 </root>

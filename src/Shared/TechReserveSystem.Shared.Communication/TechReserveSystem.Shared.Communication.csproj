@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+   <ItemGroup>
+   <Compile Update="Resources/CommunicationMessages.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>Resources/CommunicationMessages.resx</DependentUpon>
+   </Compile>
+ </ItemGroup>
+
+ <ItemGroup>
+   <EmbeddedResource Update="Resources/CommunicationMessages.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>Resources/CommunicationMessages.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+ </ItemGroup>
+
 </Project>

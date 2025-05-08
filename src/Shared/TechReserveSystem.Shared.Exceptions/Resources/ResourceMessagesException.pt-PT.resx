@@ -189,4 +189,64 @@
     <value>A quantidade tem de estar preenchida.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_EXPECTED_RETURN_EMPTY" xml:space="preserve">
+    <value>A data de retorno do equipamento reservado não pode estar vazia.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_EXPECTED_RETURN_INVALID" xml:space="preserve">
+    <value>A data de devolução do equipamento deve estar num formato válido.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY " xml:space="preserve">
+    <value>A data de início da reserva do equipamento não pode estar vazia.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_EXPECTED_STARTDATE_INVALID" xml:space="preserve">
+    <value>A data de início da reserva do equipamento deve estar num formato válido.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_ID_EMPTY" xml:space="preserve">
+    <value>O ID do equipamento não pode estar vazio.</value>
+    <comment/>
+  </data>
+  <data name="USER_ID_EMPTY" xml:space="preserve">
+    <value>O ID do utilizador não pode estar vazio.</value>
+    <comment/>
+  </data>
+  <data name="USER_ID_INVALID" xml:space="preserve">
+    <value>O ID do utilizador está num formato inválido.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_ID_INVALID" xml:space="preserve">
+    <value>O ID do equipamento está num formato inválido.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_PAST_DATE" xml:space="preserve">
+    <value>O equipamento não pode ser reservado para uma data anterior.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_RETURN_PAST_DATE" xml:space="preserve">
+    <value>A data de devolução do equipamento não pode estar no passado.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_RETURN_BEFORE_START" xml:space="preserve">
+    <value>A data de devolução da reserva não pode ser anterior à data de início.</value>
+    <comment/>
+  </data>
+  <data name="USER_NOT_FOUND" xml:space="preserve">
+    <value>Utilizador não encontrado.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_NOT_FOUND" xml:space="preserve">
+    <value>Equipamento não encontrado.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_NOT_FOUND" xml:space="preserve">
+    <value>Reserva não encontrada.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_NOT_AVAILABLE" xml:space="preserve">
+    <value> Nenhum equipamento disponível para reserva na data escolhida.</value>
+    <comment/>
+  </data>
 </root>

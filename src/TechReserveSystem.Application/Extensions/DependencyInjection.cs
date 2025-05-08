@@ -2,10 +2,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TechReserveSystem.Application.Interfaces.UseCases.Equipment;
 using TechReserveSystem.Application.Interfaces.UseCases.EquipmentCategory;
+using TechReserveSystem.Application.Interfaces.UseCases.EquipmentReservation;
 using TechReserveSystem.Application.Interfaces.UseCases.Login;
 using TechReserveSystem.Application.Services.AutoMapper;
 using TechReserveSystem.Application.UseCases.Equipment;
 using TechReserveSystem.Application.UseCases.EquipmentCategory;
+using TechReserveSystem.Application.UseCases.EquipmentReservation;
 using TechReserveSystem.Application.UseCases.Login;
 using TechReserveSystem.Application.UseCases.User.Register;
 
@@ -32,6 +34,7 @@ namespace TechReserveSystem.Application.Extensions
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
             services.AddScoped<IRegisterEquipmentUseCase, RegisterEquipmentUseCase>();
             services.AddScoped<IRegisterEquipmentCategoryUseCase, RegisterEquipmentCategoryUseCase>();
+            services.AddScoped<IRegisterReservationUseCase, RegisterReservationUseCase>();
             services.AddScoped<ILoginUseCase, LoginUseCase>();
         }
 

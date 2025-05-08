@@ -189,4 +189,64 @@
     <value>The quantity must not be empty.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_EXPECTED_RETURN_EMPTY" xml:space="preserve">
+    <value>The return date of the reserved equipment cannot be empty.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_EXPECTED_RETURN_INVALID" xml:space="preserve">
+    <value>The return date of the equipment must be in a valid format.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY " xml:space="preserve">
+    <value>The start date of the equipment reservation cannot be empty.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_EXPECTED_STARTDATE_INVALID" xml:space="preserve">
+    <value>The start date of the equipment reservation must be in a valid format.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_ID_EMPTY" xml:space="preserve">
+    <value>The equipment ID cannot be empty.</value>
+    <comment/>
+  </data>
+  <data name="USER_ID_EMPTY" xml:space="preserve">
+    <value>The user ID cannot be empty.</value>
+    <comment/>
+  </data>
+  <data name="USER_ID_INVALID" xml:space="preserve">
+    <value>The user ID is in an invalid format.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_ID_INVALID" xml:space="preserve">
+    <value>The equipment ID is in an invalid format.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_PAST_DATE" xml:space="preserve">
+    <value>The equipment cannot be reserved for a past date.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_RETURN_PAST_DATE" xml:space="preserve">
+    <value>The return date of the equipment cannot be in the past.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_RETURN_BEFORE_START" xml:space="preserve">
+    <value>The reservation return date cannot be earlier than the start date.</value>
+    <comment/>
+  </data>
+  <data name="USER_NOT_FOUND" xml:space="preserve">
+    <value>User not found.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_NOT_FOUND" xml:space="preserve">
+    <value>Equipment not found.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_NOT_FOUND" xml:space="preserve">
+    <value>Reservation not found.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_NOT_AVAILABLE" xml:space="preserve">
+    <value> No equipment available for reservation at the selected date.</value>
+    <comment/>
+  </data>
 </root>
