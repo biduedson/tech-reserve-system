@@ -221,6 +221,125 @@ namespace TechReserveSystem.Shared.Exceptions.Resources
             }
         }
 
+        public static string RESERVATION_EXPECTED_RETURN_EMPTY
+        {
+            get
+            {
+                return ResourceManager.GetString("RESERVATION_EXPECTED_RETURN_EMPTY", resourceCulture);
+            }
+        }
+
+        public static string RESERVATION_EXPECTED_RETURN_INVALID
+        {
+            get
+            {
+                return ResourceManager.GetString("RESERVATION_EXPECTED_RETURN_INVALID", resourceCulture);
+            }
+        }
+
+        public static string RESERVATION_EXPECTED_STARTDATE_EMPTY
+        {
+            get
+            {
+                return ResourceManager.GetString("RESERVATION_EXPECTED_STARTDATE_EMPTY", resourceCulture);
+            }
+        }
+
+        public static string RESERVATION_EXPECTED_STARTDATE_INVALID
+        {
+            get
+            {
+                return ResourceManager.GetString("RESERVATION_EXPECTED_STARTDATE_INVALID", resourceCulture);
+            }
+        }
+
+        public static string EQUIPMENT_ID_EMPTY
+        {
+            get
+            {
+                return ResourceManager.GetString("EQUIPMENT_ID_EMPTY", resourceCulture);
+            }
+        }
+
+        public static string EQUIPMENT_ID_INVALID
+        {
+            get
+            {
+                return ResourceManager.GetString("EQUIPMENT_ID_INVALID", resourceCulture);
+            }
+        }
+
+        public static string USER_ID_EMPTY
+        {
+            get
+            {
+                return ResourceManager.GetString("USER_ID_EMPTY", resourceCulture);
+            }
+        }
+
+        public static string USER_ID_INVALID
+        {
+            get
+            {
+                return ResourceManager.GetString("USER_ID_INVALID", resourceCulture);
+            }
+        }
+
+        public static string RESERVATION_PAST_DATE
+        {
+            get
+            {
+                return ResourceManager.GetString("RESERVATION_PAST_DATE", resourceCulture);
+            }
+        }
+
+        public static string RESERVATION_RETURN_PAST_DATE
+        {
+            get
+            {
+                return ResourceManager.GetString("RESERVATION_RETURN_PAST_DATE", resourceCulture);
+            }
+        }
+
+        public static string RESERVATION_RETURN_BEFORE_START
+        {
+            get
+            {
+                return ResourceManager.GetString("RESERVATION_RETURN_BEFORE_START", resourceCulture);
+            }
+        }
+
+        public static string USER_NOT_FOUND
+        {
+            get
+            {
+                return ResourceManager.GetString("USER_NOT_FOUND", resourceCulture);
+            }
+        }
+
+        public static string EQUIPMENT_NOT_FOUND
+        {
+            get
+            {
+                return ResourceManager.GetString("EQUIPMENT_NOT_FOUND", resourceCulture);
+            }
+        }
+
+        public static string RESERVATION_NOT_FOUND
+        {
+            get
+            {
+                return ResourceManager.GetString("RESERVATION_NOT_FOUND", resourceCulture);
+            }
+        }
+
+        public static string EQUIPMENT_NOT_AVAILABLE
+        {
+            get
+            {
+                return ResourceManager.GetString("EQUIPMENT_NOT_AVAILABLE", resourceCulture);
+            }
+        }
 
     }
 }
