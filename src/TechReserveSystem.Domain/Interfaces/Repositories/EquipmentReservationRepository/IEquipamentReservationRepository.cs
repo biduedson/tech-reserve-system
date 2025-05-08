@@ -5,11 +5,12 @@ namespace TechReserveSystem.Domain.Interfaces.Repositories.EquipmentReservationR
     public interface IEquipmentReservationRepository
     {
         Task<EquipmentReservation?> GetById(Guid id);
-        Task<IEnumerable<EquipmentReservation>> GetByUserIdAsync(Guid userId);
-        Task<IEnumerable<EquipmentReservation>> GetByEquipmetIdAsync(Guid equipmentId);
-        Task<IEnumerable<EquipmentReservation>> GetAllAsync();
-        Task<EquipmentReservation> AddAsync(EquipmentReservation equipmentReservation);
-        Task<EquipmentReservation> UpdateAsync(EquipmentReservation equipmentReservation);
-        Task DeleteAsync(Guid id);
+        Task<IEnumerable<EquipmentReservation?>> GetByUserId(Guid userId);
+        Task<IEnumerable<EquipmentReservation?>> GetByEquipmetId(Guid equipmentId);
+        Task<int> CountAvailableEquipmentOnDate(Equipment equipment, DateTime date);
+        Task<IEnumerable<EquipmentReservation>> GetAll();
+        Task<EquipmentReservation> Add(EquipmentReservation equipmentReservation);
+        Task<EquipmentReservation> Update(EquipmentReservation equipmentReservation);
+        void Delete(EquipmentReservation equipmentReservation);
     }
 }
