@@ -2,6 +2,7 @@ using AutoMapper;
 using TechReserveSystem.Domain.Entities;
 using TechReserveSystem.Shared.Communication.Request.Equipment;
 using TechReserveSystem.Shared.Communication.Request.EquipmentCategory;
+using TechReserveSystem.Shared.Communication.Request.EquipmentReservation;
 using TechReserveSystem.Shared.Communication.Request.User;
 
 namespace TechReserveSystem.Application.Services.AutoMapper
@@ -20,6 +21,7 @@ namespace TechReserveSystem.Application.Services.AutoMapper
 
             CreateMap<RequestRegisterEquipmentJson, Equipment>();
             CreateMap<EquipmentCategoryRegisterRequest, EquipmentCategory>();
+            CreateMap<EquipmentReservationRequest, EquipmentReservation>();
         }
     }
 }
