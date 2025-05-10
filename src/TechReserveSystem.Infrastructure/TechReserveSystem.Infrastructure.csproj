@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TechReserveSystem.Domain\TechReserveSystem.Domain.csproj" />
     <ProjectReference Include="..\TechReserveSystem.Application\TechReserveSystem.Application.csproj" />
+    <ProjectReference Include="..\TechReserveSystem.Shared\TechReserveSystem.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

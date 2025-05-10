@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Shared\TechReserveSystem.Shared.Communication\TechReserveSystem.Shared.Communication.csproj" />
     <ProjectReference Include="..\Shared\TechReserveSystem.Shared.Exceptions\TechReserveSystem.Shared.Exceptions.csproj" />
     <ProjectReference Include="..\TechReserveSystem.Infrastructure\TechReserveSystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\TechReserveSystem.Shared\TechReserveSystem.Shared.csproj" />
   </ItemGroup>
 
 </Project>
