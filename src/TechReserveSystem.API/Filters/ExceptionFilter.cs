@@ -5,7 +5,6 @@ using TechReserveSystem.Shared.Communication.Response.Error;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.NotFound;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
-using TechReserveSystem.Shared.Exceptions.Resources;
 
 namespace TechReserveSystem.API.Filters
 {

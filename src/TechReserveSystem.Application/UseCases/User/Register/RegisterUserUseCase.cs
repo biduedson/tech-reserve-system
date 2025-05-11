@@ -5,8 +5,9 @@ using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
 using TechReserveSystem.Shared.Communication.Request.User;
 using TechReserveSystem.Shared.Communication.Response.User;
+using TechReserveSystem.Shared.Exceptions.Constants;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
-using TechReserveSystem.Shared.Exceptions.Resources;
+using TechReserveSystem.Shared.Resources;
 
 namespace TechReserveSystem.Application.UseCases.User.Register
 {
@@ -55,7 +56,7 @@ namespace TechReserveSystem.Application.UseCases.User.Register
             var emailExists = await _repository.ExistActiveUserWithEmail(request.Email);
 
             if (emailExists)
-                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.EMAIL_ALREADY_REGISTERED));
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceAppMessages.GetExceptionMessage(UserMessagesExceptions.EMAIL_ALREADY_REGISTERED)));
 
             if (!result.IsValid)
             {

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechReserveSystem.Shared.Ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechReserveSystem.Shared.Communication", "src\Shared\TechReserveSystem.Shared.Communication\TechReserveSystem.Shared.Communication.csproj", "{BB45F2AE-8230-428C-A012-56530BFE7A43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechReserveSystem.Shared", "src\TechReserveSystem.Shared\TechReserveSystem.Shared.csproj", "{C50BA0F9-90DF-4E7D-A502-1D2E53BD598E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{BB45F2AE-8230-428C-A012-56530BFE7A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB45F2AE-8230-428C-A012-56530BFE7A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB45F2AE-8230-428C-A012-56530BFE7A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50BA0F9-90DF-4E7D-A502-1D2E53BD598E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50BA0F9-90DF-4E7D-A502-1D2E53BD598E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50BA0F9-90DF-4E7D-A502-1D2E53BD598E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50BA0F9-90DF-4E7D-A502-1D2E53BD598E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D996045-A448-4876-8A8A-189A5DE9A248} = {51A12DF8-96AD-4D91-AFB8-8A9F5821E20E}
@@ -61,5 +67,6 @@ Global
 		{135D805D-35FA-41FC-905A-7B7868A213B6} = {51A12DF8-96AD-4D91-AFB8-8A9F5821E20E}
 		{69760D6E-15E6-4285-BE9C-CF04B3D0A3FC} = {135D805D-35FA-41FC-905A-7B7868A213B6}
 		{BB45F2AE-8230-428C-A012-56530BFE7A43} = {135D805D-35FA-41FC-905A-7B7868A213B6}
+		{C50BA0F9-90DF-4E7D-A502-1D2E53BD598E} = {51A12DF8-96AD-4D91-AFB8-8A9F5821E20E}
 	EndGlobalSection
 EndGlobal
