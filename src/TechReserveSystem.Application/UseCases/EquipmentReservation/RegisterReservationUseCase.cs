@@ -52,6 +52,13 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
 
             var isEquipmentReservationRejectedOnDate = await _reservationRepository.HasRejectedReservationOnDate(user.Id, equipment.Id, request.StartDate);
 
+            var maxAllowedDate = IsReservationAllowed(request.StartDate);
+
+            if (maxAllowedDate)
+            {
+                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_DATE_TOO_EARLY));
+            }
+
             if (isEquipmentReservationRejectedOnDate)
             {
                 throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_ALREADY_REJECTED_ON_DATE));
@@ -103,6 +110,11 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
         {
             var avaliableQuantity = await _reservationRepository.CountAvailableEquipmentOnDate(equipment, date);
             return avaliableQuantity == equipment.AvailableQuantity;
+        }
+        private bool IsReservationAllowed(DateTime startReservationDate)
+        {
+            var today = DateTime.UtcNow.Date;
+            return startReservationDate.Date == today;
         }
 
     }

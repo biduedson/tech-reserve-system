@@ -277,4 +277,8 @@
     <value>You already attempted to book this equipment for this date and it was rejected.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_DATE_TOO_EARLY" xml:space="preserve">
+    <value>Reservations can only be made at least one day in advance.</value>
+    <comment/>
+  </data>
 </root>

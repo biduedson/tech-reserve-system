@@ -277,4 +277,8 @@
     <value>Você já tentou reservar este equipamento para esta data e foi recusado.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_DATE_TOO_EARLY" xml:space="preserve">
+    <value>Reservas só podem ser feitas com no mínimo um dia de antecedência.</value>
+    <comment/>
+  </data>
 </root>

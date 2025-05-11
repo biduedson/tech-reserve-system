@@ -11,6 +11,6 @@ namespace TechReserveSystem.Shared.Exceptions.Constants
         public const string RESERVATION_RETURN_BEFORE_START = "RESERVATION_RETURN_BEFORE_START";
         public const string EQUIPMENT_NOT_AVAILABLE = "EQUIPMENT_NOT_AVAILABLE";
         public const string RESERVATION_ALREADY_REJECTED_ON_DATE = "RESERVATION_ALREADY_REJECTED_ON_DATE";
-
+        public const string RESERVATION_DATE_TOO_EARLY = "RESERVATION_DATE_TOO_EARLY";
     }
 }
