@@ -193,7 +193,7 @@
     <value>La date de retour de l’équipement doit être dans un format valide.</value>
     <comment/>
   </data>
-  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY " xml:space="preserve">
+  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY" xml:space="preserve">
     <value>La date de début de la réservation de l’équipement ne peut pas être vide.</value>
     <comment/>
   </data>

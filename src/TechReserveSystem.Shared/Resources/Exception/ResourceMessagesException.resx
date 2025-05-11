@@ -197,7 +197,7 @@
     <value>The return date of the equipment must be in a valid format.</value>
     <comment/>
   </data>
-  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY " xml:space="preserve">
+  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY" xml:space="preserve">
     <value>The start date of the equipment reservation cannot be empty.</value>
     <comment/>
   </data>

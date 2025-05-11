@@ -197,7 +197,7 @@
     <value>A data de devolução do equipamento deve estar num formato válido.</value>
     <comment/>
   </data>
-  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY " xml:space="preserve">
+  <data name="RESERVATION_EXPECTED_STARTDATE_EMPTY" xml:space="preserve">
     <value>A data de início da reserva do equipamento não pode estar vazia.</value>
     <comment/>
   </data>
