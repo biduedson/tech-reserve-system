@@ -273,4 +273,8 @@
     <value>A descrição da categoria está em um formato inválido ou é nula.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_ALREADY_REJECTED_ON_DATE" xml:space="preserve">
+    <value>Você já tentou reservar este equipamento para esta data e foi recusado.</value>
+    <comment/>
+  </data>
 </root>

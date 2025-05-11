@@ -10,6 +10,7 @@ using TechReserveSystem.Shared.Communication.constants;
 using TechReserveSystem.Shared.Communication.Request.EquipmentReservation;
 using TechReserveSystem.Shared.Communication.Response.EquipmentReservation;
 using TechReserveSystem.Shared.Exceptions.Constants;
+using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Business;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.NotFound;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
 using TechReserveSystem.Shared.Resources;
@@ -39,16 +40,22 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
         }
         public async Task<EquipmentReservationResponse> Execute(EquipmentReservationRequest request)
         {
+            var user = await _userRepository.GetById(request.UserId);
+            if (user is null)
+                throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.USER_NOT_FOUND));
 
             var equipment = await _equipmentRepository.GetById(request.EquipmentId);
             if (equipment is null)
                 throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.EQUIPMENT_NOT_FOUND));
 
-            var user = await _userRepository.GetById(request.UserId);
-            if (user is null)
-                throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.USER_NOT_FOUND));
-
             Validate(request);
+
+            var isEquipmentReservationRejectedOnDate = await _reservationRepository.HasRejectedReservationOnDate(user.Id, equipment.Id, request.StartDate);
+
+            if (isEquipmentReservationRejectedOnDate)
+            {
+                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_ALREADY_REJECTED_ON_DATE));
+            }
 
             var equipmentReservation = _mapper.Map<Domain.Entities.EquipmentReservation>(request);
 

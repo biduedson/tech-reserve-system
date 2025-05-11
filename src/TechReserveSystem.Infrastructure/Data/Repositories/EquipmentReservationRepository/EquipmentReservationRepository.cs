@@ -36,6 +36,15 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
             return count;
         }
 
+        public async Task<bool> HasRejectedReservationOnDate(Guid userId, Guid equipmentId, DateTime date)
+        {
+            return await _dbContext.EquipmentReservations
+                .AnyAsync(reservation => reservation.UserId == userId
+                     && reservation.EquipmentId == equipmentId
+                     && reservation.StartDate.Date == date.Date
+                     && reservation.Status == ReservationStatus.Rejected.ToString());
+        }
+
         public async Task<IEnumerable<EquipmentReservation>> GetAll() => await _dbContext.EquipmentReservations.ToListAsync();
 
         public async Task<EquipmentReservation> Add(EquipmentReservation equipmentReservation)
