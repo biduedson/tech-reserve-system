@@ -2,7 +2,6 @@ namespace TechReserveSystem.Shared.Exceptions.Constants
 {
     public static class ReservationMessagesExceptions
     {
-        public const string RESERVATION_NOT_FOUND = "RESERVATION_NOT_FOUND";
         public const string RESERVATION_EXPECTED_RETURN_EMPTY = "RESERVATION_EXPECTED_RETURN_EMPTY";
         public const string RESERVATION_EXPECTED_RETURN_INVALID = "RESERVATION_EXPECTED_RETURN_INVALID";
         public const string RESERVATION_EXPECTED_STARTDATE_EMPTY = "RESERVATION_EXPECTED_STARTDATE_EMPTY";
@@ -10,5 +9,7 @@ namespace TechReserveSystem.Shared.Exceptions.Constants
         public const string RESERVATION_PAST_DATE = "RESERVATION_PAST_DATE";
         public const string RESERVATION_RETURN_PAST_DATE = "RESERVATION_RETURN_PAST_DATE";
         public const string RESERVATION_RETURN_BEFORE_START = "RESERVATION_RETURN_BEFORE_START";
+        public const string EQUIPMENT_NOT_AVAILABLE = "EQUIPMENT_NOT_AVAILABLE";
+
     }
 }
