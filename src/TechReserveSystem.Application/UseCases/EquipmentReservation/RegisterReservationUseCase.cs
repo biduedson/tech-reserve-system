@@ -78,18 +78,19 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
             }
 
             var reservation = await _reservationRepository.Add(equipmentReservation);
+            await _unitOfWork.Commit();
+
             var result = new EquipmentReservationResponse
             {
                 UserName = user.Name,
                 EquipmentName = equipment.Name,
                 ReservationStartDate = reservation.StartDate,
                 ReservationEndDate = reservation.ExpectedReturnDate,
-                Status = !isEquipmentUnavailable ? ReservationStatus.Approved.ToString() : ReservationStatus.Rejected.ToString(),
+                Status = equipmentReservation.Status,
                 Details = !isEquipmentUnavailable ?
                 ResourceAppMessages.GetCommunicationMessage(ReservationDetailsMessages.RESERVATION_SUCCESS) :
                 ResourceAppMessages.GetCommunicationMessage(ReservationDetailsMessages.EQUIPMENT_NOT_AVAILABLE)
             };
-            await _unitOfWork.Commit();
 
             return result;
         }
