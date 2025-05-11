@@ -5,17 +5,43 @@ using System;
 
 namespace TechReserveSystem.Shared.Resources
 {
-    public static class ResourceAppMessages
+    public class ResourceAppMessages
     {
-        private static CultureInfo resourceCulture = CultureInfo.CurrentCulture;
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        private static global::System.Resources.ResourceManager resourceManagerCommunication;
+        private static global::System.Resources.ResourceManager resourceManagerException;
 
-        private static readonly ResourceManager resourceManagerCommunication =
-            new ResourceManager("TechReserveSystem.Shared.Resources.Communication.CommunicationMessages", typeof(ResourceAppMessages).Assembly);
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal ResourceAppMessages()
+        {
+        }
 
-        private static readonly ResourceManager resourceManagerException =
-            new ResourceManager("TechReserveSystem.Shared.Resources.Exception.ResourceMessagesException", typeof(ResourceAppMessages).Assembly);
 
-        public static CultureInfo Culture
+        public static global::System.Resources.ResourceManager ResourceManagerCommunication
+        {
+            get
+            {
+                if (resourceManagerCommunication == null)
+                {
+                    resourceManagerCommunication = new global::System.Resources.ResourceManager("TechReserveSystem.Shared.Resources.Communication.CommunicationMessages", typeof(ResourceAppMessages).Assembly);
+                }
+                return resourceManagerCommunication;
+            }
+        }
+
+        public static global::System.Resources.ResourceManager ResourceManagerException
+        {
+            get
+            {
+                if (resourceManagerException == null)
+                {
+                    resourceManagerException = new global::System.Resources.ResourceManager("TechReserveSystem.Shared.Resources.Exception.ResourceMessagesException", typeof(ResourceAppMessages).Assembly);
+                }
+                return resourceManagerException;
+            }
+        }
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        public static global::System.Globalization.CultureInfo Culture
         {
             get { return resourceCulture; }
             set { resourceCulture = value; }
@@ -23,12 +49,12 @@ namespace TechReserveSystem.Shared.Resources
 
         public static string GetCommunicationMessage(string key)
         {
-            return resourceManagerCommunication.GetString(key, resourceCulture);
+            return ResourceManagerCommunication.GetString(key, resourceCulture);
         }
 
         public static string GetExceptionMessage(string key)
         {
-            return resourceManagerException.GetString(key, resourceCulture);
+            return ResourceManagerException.GetString(key, resourceCulture);
         }
     }
 }
