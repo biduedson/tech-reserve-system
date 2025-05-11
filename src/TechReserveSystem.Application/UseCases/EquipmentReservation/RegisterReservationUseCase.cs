@@ -52,9 +52,13 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
 
             var equipmentReservation = _mapper.Map<Domain.Entities.EquipmentReservation>(request);
 
-            var isEquipmentAvailability = await IsEquipmentUnavailable(request.StartDate, equipment);
+            var isEquipmentUnavailable = await IsEquipmentUnavailable(request.StartDate, equipment);
 
-            if (!isEquipmentAvailability)
+            if (!isEquipmentUnavailable)
+            {
+                equipmentReservation.Status = ReservationStatus.Approved.ToString();
+            }
+            else
             {
                 equipmentReservation.Status = ReservationStatus.Rejected.ToString();
             }
@@ -66,8 +70,8 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
                 EquipmentName = equipment.Name,
                 ReservationStartDate = reservation.StartDate,
                 ReservationEndDate = reservation.ExpectedReturnDate,
-                Status = reservation.Status,
-                Details = isEquipmentAvailability ?
+                Status = !isEquipmentUnavailable ? ReservationStatus.Approved.ToString() : ReservationStatus.Rejected.ToString(),
+                Details = !isEquipmentUnavailable ?
                 ResourceAppMessages.GetCommunicationMessage(ReservationDetailsMessages.RESERVATION_SUCCESS) :
                 ResourceAppMessages.GetCommunicationMessage(ReservationDetailsMessages.EQUIPMENT_NOT_AVAILABLE)
             };

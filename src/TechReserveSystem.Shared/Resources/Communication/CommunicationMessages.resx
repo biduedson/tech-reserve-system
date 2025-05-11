@@ -118,14 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="RESERVATION_SUCCESS" xml:space="preserve">
-    <value>Reservation successfully completed.	</value>
+    <value>Reservation successfully completed.</value>
     <comment/>
   </data>
   <data name="RESERVATION_CANCELED&#x9;" xml:space="preserve">
     <value>The reservation has been canceled.	</value>
     <comment/>
   </data>
-  <data name="EQUIPMENT_NOT_AVAILABLE&#x9;" xml:space="preserve">
+  <data name="EQUIPMENT_NOT_AVAILABLE" xml:space="preserve">
     <value>No equipment available for reservation on the selected date.	</value>
     <comment/>
   </data>

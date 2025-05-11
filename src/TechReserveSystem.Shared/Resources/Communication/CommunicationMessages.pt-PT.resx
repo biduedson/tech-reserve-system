@@ -117,15 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RESERVATION_SUCCESS&#x9;" xml:space="preserve">
-    <value>Reserva efetuada com sucesso.	</value>
+  <data name="RESERVATION_SUCCESS" xml:space="preserve">
+    <value>Reserva efetuada com sucesso.</value>
     <comment/>
   </data>
   <data name="RESERVATION_CANCELED&#x9;" xml:space="preserve">
     <value>A reserva foi anulada.	</value>
     <comment/>
   </data>
-  <data name="EQUIPMENT_NOT_AVAILABLE&#x9;" xml:space="preserve">
+  <data name="EQUIPMENT_NOT_AVAILABLE" xml:space="preserve">
     <value>Nenhum equipamento disponível para reserva na data escolhida.	</value>
     <comment/>
   </data>

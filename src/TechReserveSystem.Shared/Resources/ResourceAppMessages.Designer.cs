@@ -49,12 +49,12 @@ namespace TechReserveSystem.Shared.Resources
 
         public static string GetCommunicationMessage(string key)
         {
-            return ResourceManagerCommunication.GetString(key, resourceCulture);
+            return ResourceManagerCommunication.GetString(key, resourceCulture).Trim();
         }
 
         public static string GetExceptionMessage(string key)
         {
-            return ResourceManagerException.GetString(key, resourceCulture);
+            return ResourceManagerException.GetString(key, resourceCulture).Trim();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace TechReserveSystem.API.Filters
         private void ThrowUnknownException(ExceptionContext context)
         {
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            context.Result = new ObjectResult(new ResponseErrorJson(context.Exception.Message));
+            context.Result = new ObjectResult(new ResponseErrorJson(context.Exception.StackTrace.ToString()));
         }
     }
 }
