@@ -5,8 +5,9 @@ using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentCategoryRepository;
 using TechReserveSystem.Shared.Communication.Request.EquipmentCategory;
 using TechReserveSystem.Shared.Communication.Response.EquipmentCategory;
+using TechReserveSystem.Shared.Exceptions.Constants;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
-using TechReserveSystem.Shared.Exceptions.Resources;
+using TechReserveSystem.Shared.Resources;
 
 namespace TechReserveSystem.Application.UseCases.EquipmentCategory
 {
@@ -53,7 +54,7 @@ namespace TechReserveSystem.Application.UseCases.EquipmentCategory
         {
             var categoryExists = await _repository.ExistEquipmentCategoryWithName(name);
             if (categoryExists)
-                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.CATEGORY_ALREADY_REGISTERED));
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceAppMessages.GetExceptionMessage(CategoryMessagesExceptions.CATEGORY_ALREADY_REGISTERED)));
         }
     }
 }

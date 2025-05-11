@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using AutoMapper;
 using TechReserveSystem.Application.Interfaces.UseCases.Equipment;
 using TechReserveSystem.Application.Validators.Equipment;
@@ -7,8 +6,9 @@ using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentCategoryReposito
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentRepository;
 using TechReserveSystem.Shared.Communication.Request.Equipment;
 using TechReserveSystem.Shared.Communication.Response.Equipment;
+using TechReserveSystem.Shared.Exceptions.Constants;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
-using TechReserveSystem.Shared.Exceptions.Resources;
+using TechReserveSystem.Shared.Resources;
 
 namespace TechReserveSystem.Application.UseCases.Equipment
 {
@@ -68,7 +68,7 @@ namespace TechReserveSystem.Application.UseCases.Equipment
             var ExistEquipmentWithName = await _repository.ExistEquipmentWithName(name);
             if (ExistEquipmentWithName)
             {
-                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.EQUIPMENT_ALREADY_REGISTERED));
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceAppMessages.GetExceptionMessage(EquipmentMessagesExceptions.EQUIPMENT_ALREADY_REGISTERED)));
             }
         }
 
@@ -77,7 +77,7 @@ namespace TechReserveSystem.Application.UseCases.Equipment
             var categoryExists = await _categoryRepository.GetById(categoryId);
             if (categoryExists is null)
             {
-                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.CATEGORY_NOT_FOUND));
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.CATEGORY_NOT_FOUND)));
             }
         }
     }

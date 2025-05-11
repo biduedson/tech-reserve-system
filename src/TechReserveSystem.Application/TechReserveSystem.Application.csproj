@@ -2,8 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TechReserveSystem.Domain\TechReserveSystem.Domain.csproj" />
-    <ProjectReference Include="..\Shared\TechReserveSystem.Shared.Exceptions\TechReserveSystem.Shared.Exceptions.csproj" />
-    <ProjectReference Include="..\Shared\TechReserveSystem.Shared.Communication\TechReserveSystem.Shared.Communication.csproj" />
     <ProjectReference Include="..\TechReserveSystem.Shared\TechReserveSystem.Shared.csproj" />
   </ItemGroup>
 

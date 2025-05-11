@@ -5,8 +5,9 @@ using TechReserveSystem.Application.Interfaces.UseCases.Login;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
 using TechReserveSystem.Shared.Communication.Request.Authentication;
 using TechReserveSystem.Shared.Communication.Response.Authentication;
+using TechReserveSystem.Shared.Exceptions.Constants;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
-using TechReserveSystem.Shared.Exceptions.Resources;
+using TechReserveSystem.Shared.Resources;
 
 namespace TechReserveSystem.Application.UseCases.Login
 {
@@ -46,7 +47,7 @@ namespace TechReserveSystem.Application.UseCases.Login
             if (user == null || user.Password != passwordHash)
             {
                 var errors = new List<string>();
-                errors.Add(ResourceMessagesException.INVALID_CREDENTIALS);
+                errors.Add(ResourceAppMessages.GetExceptionMessage(AuthMessagesExceptions.INVALID_CREDENTIALS));
                 throw new ErrorOnValidationException(errors);
             }
 
