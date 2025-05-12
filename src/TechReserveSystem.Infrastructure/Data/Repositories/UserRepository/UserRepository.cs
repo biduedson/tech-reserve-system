@@ -11,7 +11,13 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.UserRepository
 
         public UserRepository(AppDbContext dbContext) => _dbContext = dbContext;
 
-        public async Task<User?> GetById(Guid id) => await _dbContext.Users.FindAsync(id);
+        public async Task<User?> GetById(Guid id)
+        {
+            var user = await _dbContext.Users
+                 .Include(u => u.EquipmentReservations)
+                 .FirstOrDefaultAsync(u => u.Id == id);
+            return user;
+        }
         public async Task<User?> GetByName(string name) => await _dbContext.Users.FindAsync(name);
         public async Task<User?> GetByEmail(string email) => await _dbContext.Users.FirstOrDefaultAsync(user => user.Email.Contains(email));
         public async Task<IEnumerable<User>> GetAll() => await _dbContext.Users.ToListAsync();
