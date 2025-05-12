@@ -11,14 +11,10 @@ namespace TechReserveSystem.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime ExpectedReturnDate { get; set; }
         public string Status { get; set; } = ReservationStatus.Pending.ToString();
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public User User { get; set; } = null!;
         public Equipment Equipment { get; set; } = null!;
 
-        public EquipmentReservation()
-        {
-            ExpectedReturnDate = StartDate;
-        }
     }
 
 }

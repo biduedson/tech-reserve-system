@@ -87,7 +87,7 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
             {
                 equipmentReservation.Status = ReservationStatus.Rejected.ToString();
             }
-
+            equipmentReservation.ExpectedReturnDate = request.StartDate;
             var reservation = await _reservationRepository.Add(equipmentReservation);
             await _unitOfWork.Commit();
 
@@ -125,17 +125,18 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
         }
         private bool IsReservationAllowed(DateTime startReservationDate)
         {
-            var today = DateTime.UtcNow.Date;
+            var today = DateTime.Now.Date;
             return startReservationDate.Date == today;
         }
 
         private bool IsDateInPast(DateTime startReservationDate)
         {
-            return startReservationDate.Date < DateTime.UtcNow.Date;
+            return startReservationDate.Date < DateTime.Now.Date;
         }
         private async Task<bool> HasPendingReturn(Guid userId)
         {
             var pendingReservations = await _reservationRepository.GetPendingReservationsByUser(userId);
+            Console.WriteLine(pendingReservations.Any());
             return pendingReservations.Any();
         }
 

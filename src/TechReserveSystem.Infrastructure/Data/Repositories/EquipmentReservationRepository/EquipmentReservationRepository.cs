@@ -27,7 +27,7 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
         public async Task<int> CountAvailableEquipmentOnDate(Equipment equipment, DateTime date)
         {
             var count = await _dbContext.EquipmentReservations
-                .Where(reservation => reservation.StartDate == date.Date
+                .Where(reservation => reservation.StartDate.Date == date.Date
                     && reservation.EquipmentId == equipment.Id
                     && reservation.Status != ReservationStatus.Cancelled.ToString() // Exclui canceladas
                     && reservation.Status == ReservationStatus.Approved.ToString()) // Apenas reservas pendentes
@@ -51,7 +51,7 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
          .Where(r => r.UserId == userId
               && (r.Status == ReservationStatus.Approved.ToString()
               || r.Status == ReservationStatus.InProgress.ToString())
-              && r.ExpectedReturnDate.Date < DateTime.UtcNow.Date)
+              && r.ExpectedReturnDate.Date < DateTime.Now.Date)
         .ToListAsync();
         }
 
