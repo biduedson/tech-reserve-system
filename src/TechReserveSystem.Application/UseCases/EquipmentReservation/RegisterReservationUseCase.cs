@@ -44,6 +44,11 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
             if (user is null)
                 throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.USER_NOT_FOUND));
 
+            var hasPendingReservations = await HasPendingReturn(request.UserId);
+
+            if (hasPendingReservations)
+                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.UNRETURNED_EQUIPMENT_RESTRICTION));
+
             var equipment = await _equipmentRepository.GetById(request.EquipmentId);
             if (equipment is null)
                 throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.EQUIPMENT_NOT_FOUND));
@@ -116,6 +121,11 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
         {
             var today = DateTime.UtcNow.Date;
             return startReservationDate.Date == today;
+        }
+        private async Task<bool> HasPendingReturn(Guid userId)
+        {
+            var pendingReservations = await _reservationRepository.GetPendingReservationsByUser(userId);
+            return pendingReservations.Any();
         }
 
     }

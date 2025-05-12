@@ -45,6 +45,15 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
                      && reservation.Status == ReservationStatus.Rejected.ToString());
         }
 
+        public async Task<IEnumerable<EquipmentReservation>> GetPendingReservationsByUser(Guid userId)
+        {
+            return await _dbContext.EquipmentReservations
+         .Where(r => r.UserId == userId
+               && (r.Status == ReservationStatus.Approved.ToString()
+               || r.Status == ReservationStatus.InProgress.ToString()))
+         .ToListAsync();
+        }
+
         public async Task<IEnumerable<EquipmentReservation>> GetAll() => await _dbContext.EquipmentReservations.ToListAsync();
 
         public async Task<EquipmentReservation> Add(EquipmentReservation equipmentReservation)

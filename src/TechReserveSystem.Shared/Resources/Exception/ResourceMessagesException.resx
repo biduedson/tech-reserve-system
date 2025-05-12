@@ -281,4 +281,8 @@
     <value>Reservations can only be made at least one day in advance.</value>
     <comment/>
   </data>
+  <data name="UNRETURNED_EQUIPMENT_RESTRICTION" xml:space="preserve">
+    <value>You still have pending reservations. Return them before making a new one.</value>
+    <comment/>
+  </data>
 </root>

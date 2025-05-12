@@ -10,5 +10,6 @@ namespace TechReserveSystem.Shared.Exceptions.Constants
         public const string EQUIPMENT_ID_INVALID = "EQUIPMENT_ID_INVALID";
         public const string AVAILABLE_QUANTITY_EQUIPMENT_EMPTY = "AVAILABLE_QUANTITY_EQUIPMENT_EMPTY";
         public const string AVAILABLE_QUANTITY_EQUIPMENT_INVALID = "AVAILABLE_QUANTITY_EQUIPMENT_INVALID";
+
     }
 }

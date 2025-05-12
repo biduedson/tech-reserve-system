@@ -277,4 +277,8 @@
     <value>Reservas só podem ser feitas com no mínimo um dia de antecedência.</value>
     <comment/>
   </data>
+  <data name="UNRETURNED_EQUIPMENT_RESTRICTION" xml:space="preserve">
+    <value>Vous avez des réservations en attente. Retournez-les avant d’en faire une nouvelle.</value>
+    <comment/>
+  </data>
 </root>

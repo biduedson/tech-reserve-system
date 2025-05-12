@@ -277,4 +277,8 @@
     <value>As reservas só podem ser feitas com pelo menos um dia de antecedência.</value>
     <comment/>
   </data>
+  <data name="UNRETURNED_EQUIPMENT_RESTRICTION" xml:space="preserve">
+    <value>Tem reservas pendentes. Devolva-as antes de reservar novamente.</value>
+    <comment/>
+  </data>
 </root>
