@@ -59,7 +59,7 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
 
             var maxAllowedDate = IsReservationAllowed(request.StartDate);
 
-            if (maxAllowedDate)
+            if (!maxAllowedDate)
             {
                 throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_DATE_TOO_EARLY));
             }
