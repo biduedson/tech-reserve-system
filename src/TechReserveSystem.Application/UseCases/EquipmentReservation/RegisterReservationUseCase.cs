@@ -1,19 +1,14 @@
 using AutoMapper;
+using TechReserveSystem.Application.Interfaces.Services.Validations;
 using TechReserveSystem.Application.Interfaces.UseCases.EquipmentReservation;
-using TechReserveSystem.Application.Validators.EquipmentReservation;
 using TechReserveSystem.Domain.Enuns;
 using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentRepository;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentReservationRepository;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
-using TechReserveSystem.Shared.Communication.constants;
 using TechReserveSystem.Shared.Communication.Request.EquipmentReservation;
 using TechReserveSystem.Shared.Communication.Response.EquipmentReservation;
-using TechReserveSystem.Shared.Exceptions.Constants;
-using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Business;
-using TechReserveSystem.Shared.Exceptions.ExceptionsBase.NotFound;
-using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
-using TechReserveSystem.Shared.Resources;
+
 
 namespace TechReserveSystem.Application.UseCases.EquipmentReservation
 {
@@ -24,130 +19,92 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IReservationValidationService _validationService;
         public RegisterReservationUseCase(
             IEquipmentReservationRepository reservationRepository,
             IEquipmentRepository equipmentRepository,
             IUserRepository userRepository,
             IMapper mapper,
-            IUnitOfWork unitOfWork
+            IUnitOfWork unitOfWork,
+            IReservationValidationService validationService
             )
         {
-            _reservationRepository = reservationRepository;
-            _equipmentRepository = equipmentRepository;
-            _userRepository = userRepository;
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            _reservationRepository = reservationRepository ?? throw new ArgumentNullException(nameof(reservationRepository));
+            _equipmentRepository = equipmentRepository ?? throw new ArgumentNullException(nameof(equipmentRepository));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _validationService = validationService ?? throw new ArgumentNullException(nameof(validationService));
         }
         public async Task<EquipmentReservationResponse> Execute(EquipmentReservationRequest request)
         {
-            var user = await _userRepository.GetById(request.UserId);
-            if (user is null)
-                throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.USER_NOT_FOUND));
+            _validationService.ValidateReservationRequest(request);
 
-            var equipment = await _equipmentRepository.GetById(request.EquipmentId);
-            if (equipment is null)
-                throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.EQUIPMENT_NOT_FOUND));
+            var (user, equipment) = await GetEntities(request.UserId, request.EquipmentId);
 
-            Validate(request);
+            await ValidateBusinessRules(request, user.Id, equipment.Id);
 
-            var hasPendingReservations = await HasPendingReturn(request.UserId);
-            Console.WriteLine(hasPendingReservations);
-            if (hasPendingReservations)
-            {
-                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.UNRETURNED_EQUIPMENT_RESTRICTION));
-            }
+            var reservation = await CreateReservation(request, equipment);
 
-            var isEquipmentReservationRejectedOnDate = await _reservationRepository.HasRejectedReservationOnDate(user.Id, equipment.Id, request.StartDate);
+            return CreateReservationResponse(user, equipment, reservation);
 
-            var maxAllowedDate = IsReservationAllowed(request.StartDate);
+        }
 
-            var isDateInPast = IsDateInPast(request.StartDate);
-            if (isDateInPast)
-            {
-                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_PAST_DATE));
-            }
+        private async Task<(Domain.Entities.User user, Domain.Entities.Equipment equipment)> GetEntities(Guid userId, Guid equipmentId)
+        {
+            var user = await _userRepository.GetById(userId);
+            var equipment = await _equipmentRepository.GetById(equipmentId);
 
-            if (maxAllowedDate)
-            {
-                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_DATE_TOO_EARLY));
-            }
+            _validationService.ValidateEntitiesExist(user, equipment);
 
-            if (isEquipmentReservationRejectedOnDate)
-            {
-                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_ALREADY_REJECTED_ON_DATE));
-            }
+            return (user, equipment);
+        }
 
-            if (await IsEquipmentAlreadyBookedByUser(request.UserId, request.EquipmentId, request.StartDate))
-            {
-                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.EQUIPMENT_ALREADY_RESERVED_BY_USER));
-            }
+        private async Task ValidateBusinessRules(EquipmentReservationRequest request, Guid userId, Guid equipmentId)
+        {
+            await _validationService.ValidateUserHasNoPendingReservations(userId);
+            _validationService.ValidateReservationDate(request.StartDate);
+            await _validationService.ValidateNoRejectedReservationsOnDate(userId, equipmentId, request.StartDate);
+            await _validationService.ValidateNotAlreadyBookedByUser(userId, equipmentId, request.StartDate);
+        }
+
+        private async Task<Domain.Entities.EquipmentReservation> CreateReservation(
+            EquipmentReservationRequest request,
+            Domain.Entities.Equipment equipment)
+        {
             var equipmentReservation = _mapper.Map<Domain.Entities.EquipmentReservation>(request);
 
-            var isEquipmentUnavailable = await IsEquipmentUnavailable(request.StartDate, equipment);
+            var isEquipmentUnavailable = await _reservationRepository.CountAvailableEquipmentOnDate(equipment, request.StartDate)
+                                         >= equipment.AvailableQuantity;
 
-            if (!isEquipmentUnavailable)
-            {
-                equipmentReservation.Status = ReservationStatus.Approved.ToString();
-            }
-            else
-            {
-                equipmentReservation.Status = ReservationStatus.Rejected.ToString();
-            }
+            equipmentReservation.Status = isEquipmentUnavailable
+                ? ReservationStatus.Rejected.ToString()
+                : ReservationStatus.Approved.ToString();
+
             equipmentReservation.ExpectedReturnDate = request.StartDate.Date;
+
             var reservation = await _reservationRepository.Add(equipmentReservation);
             await _unitOfWork.Commit();
 
-            var result = new EquipmentReservationResponse
+            return reservation;
+        }
+
+        private EquipmentReservationResponse CreateReservationResponse(
+            Domain.Entities.User user,
+            Domain.Entities.Equipment equipment,
+            Domain.Entities.EquipmentReservation reservation)
+        {
+            var isApproved = reservation.Status == ReservationStatus.Approved.ToString();
+
+            return new EquipmentReservationResponse
             {
                 UserName = user.Name,
                 EquipmentName = equipment.Name,
                 ReservationStartDate = reservation.StartDate,
                 ReservationEndDate = reservation.ExpectedReturnDate,
-                Status = equipmentReservation.Status,
-                Details = !isEquipmentUnavailable ?
-                ResourceAppMessages.GetCommunicationMessage(ReservationDetailsMessages.RESERVATION_SUCCESS) :
-                ResourceAppMessages.GetCommunicationMessage(ReservationDetailsMessages.EQUIPMENT_NOT_AVAILABLE)
+                Status = reservation.Status,
+                Details = _validationService.GetReservationResponseDetails(isApproved)
             };
-
-            return result;
-        }
-
-        private void Validate(EquipmentReservationRequest request)
-        {
-            var validator = new RegisterReservationValidator();
-            var result = validator.Validate(request);
-
-            if (!result.IsValid)
-            {
-                var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
-                throw new ErrorOnValidationException(errorMessages);
-            }
-        }
-
-        private async Task<bool> IsEquipmentUnavailable(DateTime date, Domain.Entities.Equipment equipment)
-        {
-            var avaliableQuantity = await _reservationRepository.CountAvailableEquipmentOnDate(equipment, date);
-            return avaliableQuantity == equipment.AvailableQuantity;
-        }
-        private bool IsReservationAllowed(DateTime startReservationDate)
-        {
-            var today = DateTime.Now.Date;
-            return startReservationDate.Date == today;
-        }
-
-        private bool IsDateInPast(DateTime startReservationDate)
-        {
-            return startReservationDate.Date < DateTime.Now.Date;
-        }
-        private async Task<bool> HasPendingReturn(Guid userId)
-        {
-            var pendingReservations = await _reservationRepository.GetPendingReservationsByUser(userId);
-            return pendingReservations.Any();
-        }
-        private async Task<bool> IsEquipmentAlreadyBookedByUser(Guid userId, Guid equipmentId, DateTime reservationDate)
-        {
-            var alreadyBookedByUser = await _reservationRepository.HasUserAlreadyReservedEquipment(userId, equipmentId, reservationDate);
-            return alreadyBookedByUser;
         }
 
     }
