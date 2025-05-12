@@ -281,4 +281,8 @@
     <value>Vous avez des réservations en attente. Retournez-les avant d’en faire une nouvelle.</value>
     <comment/>
   </data>
+  <data name="EQUIPMENT_ALREADY_RESERVED_BY_USER" xml:space="preserve">
+    <value>Vous avez déjà une réservation pour cet équipement à cette date.</value>
+    <comment/>
+  </data>
 </root>

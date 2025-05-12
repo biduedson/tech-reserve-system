@@ -9,6 +9,7 @@ namespace TechReserveSystem.Domain.Interfaces.Repositories.EquipmentReservationR
         Task<IEnumerable<EquipmentReservation?>> GetByEquipmetId(Guid equipmentId);
         Task<bool> HasRejectedReservationOnDate(Guid userId, Guid equipmentId, DateTime date);
         Task<IEnumerable<EquipmentReservation>> GetPendingReservationsByUser(Guid userId);
+        Task<bool> HasUserAlreadyReservedEquipment(Guid userId, Guid equipmentId, DateTime reservationDate);
         Task<int> CountAvailableEquipmentOnDate(Equipment equipment, DateTime date);
         Task<IEnumerable<EquipmentReservation>> GetAll();
         Task<EquipmentReservation> Add(EquipmentReservation equipmentReservation);

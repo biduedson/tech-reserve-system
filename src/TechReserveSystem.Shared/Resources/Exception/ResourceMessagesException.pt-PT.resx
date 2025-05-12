@@ -281,4 +281,8 @@
     <value>Tem reservas pendentes. Devolva-as antes de reservar novamente.</value>
     <comment/>
   </data>
+  <data name="EQUIPMENT_ALREADY_RESERVED_BY_USER" xml:space="preserve">
+    <value>Você  Já tem uma reserva para este equipamento nesta data.</value>
+    <comment/>
+  </data>
 </root>

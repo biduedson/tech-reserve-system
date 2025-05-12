@@ -51,8 +51,17 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
          .Where(r => r.UserId == userId
               && (r.Status == ReservationStatus.Approved.ToString()
               || r.Status == ReservationStatus.InProgress.ToString())
-              && r.ExpectedReturnDate.Date < DateTime.Now.Date)
+              && r.ExpectedReturnDate.Date < DateTime.Now.Date
+              )
         .ToListAsync();
+        }
+
+        public async Task<bool> HasUserAlreadyReservedEquipment(Guid userId, Guid equipmentId, DateTime reservationDate)
+        {
+            return await _dbContext.EquipmentReservations
+            .AnyAsync(r => r.UserId == userId
+                && r.EquipmentId == equipmentId
+                && r.StartDate.Date == reservationDate.Date);
         }
 
         public async Task<IEnumerable<EquipmentReservation>> GetAll() => await _dbContext.EquipmentReservations.ToListAsync();

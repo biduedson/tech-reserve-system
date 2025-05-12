@@ -285,4 +285,8 @@
     <value>You still have pending reservations. Return them before making a new one.</value>
     <comment/>
   </data>
+  <data name="EQUIPMENT_ALREADY_RESERVED_BY_USER" xml:space="preserve">
+    <value>You already have a reservation for this equipment on the same date.</value>
+    <comment/>
+  </data>
 </root>

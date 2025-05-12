@@ -44,16 +44,18 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
             if (user is null)
                 throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.USER_NOT_FOUND));
 
-            var hasPendingReservations = await HasPendingReturn(request.UserId);
-
-            if (hasPendingReservations)
-                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.UNRETURNED_EQUIPMENT_RESTRICTION));
-
             var equipment = await _equipmentRepository.GetById(request.EquipmentId);
             if (equipment is null)
                 throw new NotFoundExceptionError(ResourceAppMessages.GetExceptionMessage(NotFoundMessagesExceptions.EQUIPMENT_NOT_FOUND));
 
             Validate(request);
+
+            var hasPendingReservations = await HasPendingReturn(request.UserId);
+            Console.WriteLine(hasPendingReservations);
+            if (hasPendingReservations)
+            {
+                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.UNRETURNED_EQUIPMENT_RESTRICTION));
+            }
 
             var isEquipmentReservationRejectedOnDate = await _reservationRepository.HasRejectedReservationOnDate(user.Id, equipment.Id, request.StartDate);
 
@@ -65,7 +67,7 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
                 throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_PAST_DATE));
             }
 
-            if (!maxAllowedDate)
+            if (maxAllowedDate)
             {
                 throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_DATE_TOO_EARLY));
             }
@@ -75,6 +77,10 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
                 throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_ALREADY_REJECTED_ON_DATE));
             }
 
+            if (await IsEquipmentAlreadyBookedByUser(request.UserId, request.EquipmentId, request.StartDate))
+            {
+                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.EQUIPMENT_ALREADY_RESERVED_BY_USER));
+            }
             var equipmentReservation = _mapper.Map<Domain.Entities.EquipmentReservation>(request);
 
             var isEquipmentUnavailable = await IsEquipmentUnavailable(request.StartDate, equipment);
@@ -87,7 +93,7 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
             {
                 equipmentReservation.Status = ReservationStatus.Rejected.ToString();
             }
-            equipmentReservation.ExpectedReturnDate = request.StartDate;
+            equipmentReservation.ExpectedReturnDate = request.StartDate.Date;
             var reservation = await _reservationRepository.Add(equipmentReservation);
             await _unitOfWork.Commit();
 
@@ -136,8 +142,12 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
         private async Task<bool> HasPendingReturn(Guid userId)
         {
             var pendingReservations = await _reservationRepository.GetPendingReservationsByUser(userId);
-            Console.WriteLine(pendingReservations.Any());
             return pendingReservations.Any();
+        }
+        private async Task<bool> IsEquipmentAlreadyBookedByUser(Guid userId, Guid equipmentId, DateTime reservationDate)
+        {
+            var alreadyBookedByUser = await _reservationRepository.HasUserAlreadyReservedEquipment(userId, equipmentId, reservationDate);
+            return alreadyBookedByUser;
         }
 
     }
