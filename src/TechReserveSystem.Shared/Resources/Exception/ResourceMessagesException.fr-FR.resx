@@ -269,4 +269,20 @@
     <value>La description de la catégorie est dans un format invalide ou est nulle.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_ALREADY_REJECTED_ON_DATE" xml:space="preserve">
+    <value>Vous avez déjà tenté de réserver cet équipement pour cette date et cela a été refusé.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_DATE_TOO_EARLY" xml:space="preserve">
+    <value>Reservas só podem ser feitas com no mínimo um dia de antecedência.</value>
+    <comment/>
+  </data>
+  <data name="UNRETURNED_EQUIPMENT_RESTRICTION" xml:space="preserve">
+    <value>Vous avez des réservations en attente. Retournez-les avant d’en faire une nouvelle.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_ALREADY_RESERVED_BY_USER" xml:space="preserve">
+    <value>Vous avez déjà une réservation pour cet équipement à cette date.</value>
+    <comment/>
+  </data>
 </root>

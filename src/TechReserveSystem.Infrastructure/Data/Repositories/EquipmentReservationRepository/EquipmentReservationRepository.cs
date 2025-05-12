@@ -27,11 +27,41 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
         public async Task<int> CountAvailableEquipmentOnDate(Equipment equipment, DateTime date)
         {
             var count = await _dbContext.EquipmentReservations
-                    .Where(reservation => reservation.StartDate == date.Date
-                        && reservation.Status == ReservationStatus.Approved.ToString()
-                        && reservation.EquipmentId == equipment.Id)
-                    .CountAsync();
+                .Where(reservation => reservation.StartDate.Date == date.Date
+                    && reservation.EquipmentId == equipment.Id
+                    && reservation.Status != ReservationStatus.Cancelled.ToString() // Exclui canceladas
+                    && reservation.Status == ReservationStatus.Approved.ToString()) // Apenas reservas pendentes
+                .CountAsync();
+
             return count;
+        }
+
+        public async Task<bool> HasRejectedReservationOnDate(Guid userId, Guid equipmentId, DateTime date)
+        {
+            return await _dbContext.EquipmentReservations
+                .AnyAsync(reservation => reservation.UserId == userId
+                     && reservation.EquipmentId == equipmentId
+                     && reservation.StartDate.Date == date.Date
+                     && reservation.Status == ReservationStatus.Rejected.ToString());
+        }
+
+        public async Task<IEnumerable<EquipmentReservation>> GetPendingReservationsByUser(Guid userId)
+        {
+            return await _dbContext.EquipmentReservations
+         .Where(r => r.UserId == userId
+              && (r.Status == ReservationStatus.Approved.ToString()
+              || r.Status == ReservationStatus.InProgress.ToString())
+              && r.ExpectedReturnDate.Date < DateTime.Now.Date
+              )
+        .ToListAsync();
+        }
+
+        public async Task<bool> HasUserAlreadyReservedEquipment(Guid userId, Guid equipmentId, DateTime reservationDate)
+        {
+            return await _dbContext.EquipmentReservations
+            .AnyAsync(r => r.UserId == userId
+                && r.EquipmentId == equipmentId
+                && r.StartDate.Date == reservationDate.Date);
         }
 
         public async Task<IEnumerable<EquipmentReservation>> GetAll() => await _dbContext.EquipmentReservations.ToListAsync();
@@ -40,7 +70,6 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
         {
             await _dbContext.EquipmentReservations.AddAsync(equipmentReservation);
             return equipmentReservation;
-
         }
 
         public async Task<EquipmentReservation> Update(EquipmentReservation equipmentReservation)

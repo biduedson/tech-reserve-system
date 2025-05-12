@@ -4,6 +4,6 @@ namespace TechReserveSystem.Shared.Communication.Request.EquipmentReservation
      Guid UserId,
      Guid EquipmentId,
      int Quantity,
-     DateTime StartDate,
-     DateTime ExpectedReturnDate);
+     DateTime StartDate
+    );
 }

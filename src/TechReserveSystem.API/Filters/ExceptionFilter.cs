@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using TechReserveSystem.Shared.Communication.Response.Error;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase;
+using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Business;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.NotFound;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
 
@@ -16,6 +17,8 @@ namespace TechReserveSystem.API.Filters
                 HandleProjectException(context);
             else if (context.Exception is NotFoundExceptionError)
                 HandleNotFoundException(context);
+            else if (context.Exception is BusinessException)
+                HandleBusinessException(context);
             else
                 ThrowUnknownException(context);
         }
@@ -46,6 +49,16 @@ namespace TechReserveSystem.API.Filters
         {
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Result = new ObjectResult(new ResponseErrorJson(context.Exception.StackTrace.ToString()));
+        }
+
+        private void HandleBusinessException(ExceptionContext context)
+        {
+            if (context.Exception is BusinessException)
+            {
+                var exception = context.Exception as BusinessException;
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest; // Ou outro código adequado
+                context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception!.Message));
+            }
         }
     }
 }
