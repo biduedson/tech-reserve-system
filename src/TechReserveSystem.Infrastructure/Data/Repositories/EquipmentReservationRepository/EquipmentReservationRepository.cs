@@ -49,9 +49,10 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
         {
             return await _dbContext.EquipmentReservations
          .Where(r => r.UserId == userId
-               && (r.Status == ReservationStatus.Approved.ToString()
-               || r.Status == ReservationStatus.InProgress.ToString()))
-         .ToListAsync();
+              && (r.Status == ReservationStatus.Approved.ToString()
+              || r.Status == ReservationStatus.InProgress.ToString())
+              && r.ExpectedReturnDate.Date < DateTime.UtcNow.Date)
+        .ToListAsync();
         }
 
         public async Task<IEnumerable<EquipmentReservation>> GetAll() => await _dbContext.EquipmentReservations.ToListAsync();
@@ -60,7 +61,6 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
         {
             await _dbContext.EquipmentReservations.AddAsync(equipmentReservation);
             return equipmentReservation;
-
         }
 
         public async Task<EquipmentReservation> Update(EquipmentReservation equipmentReservation)
