@@ -59,6 +59,12 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
 
             var maxAllowedDate = IsReservationAllowed(request.StartDate);
 
+            var isDateInPast = IsDateInPast(request.StartDate);
+            if (isDateInPast)
+            {
+                throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_PAST_DATE));
+            }
+
             if (!maxAllowedDate)
             {
                 throw new BusinessException(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_DATE_TOO_EARLY));
@@ -121,6 +127,11 @@ namespace TechReserveSystem.Application.UseCases.EquipmentReservation
         {
             var today = DateTime.UtcNow.Date;
             return startReservationDate.Date == today;
+        }
+
+        private bool IsDateInPast(DateTime startReservationDate)
+        {
+            return startReservationDate.Date < DateTime.UtcNow.Date;
         }
         private async Task<bool> HasPendingReturn(Guid userId)
         {
