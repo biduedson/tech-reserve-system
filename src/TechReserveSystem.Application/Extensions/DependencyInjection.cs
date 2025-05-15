@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TechReserveSystem.Application.BusinessRules.Implementations;
@@ -17,6 +18,8 @@ using TechReserveSystem.Application.UseCases.EquipmentReservation;
 using TechReserveSystem.Application.UseCases.Login;
 using TechReserveSystem.Application.UseCases.User.Register;
 using TechReserveSystem.Application.Validations.Equipment;
+using TechReserveSystem.Application.Validations.Reservation.Implementations;
+using TechReserveSystem.Application.Validations.Reservation.interfaces;
 
 namespace TechReserveSystem.Application.Extensions
 {
@@ -28,16 +31,13 @@ namespace TechReserveSystem.Application.Extensions
             AddUseCases(services);
             AddProcessingServices(services);
             AddBusinessRules(services);
-            AddValiddations(services);
+            AddValidations(services);
         }
 
         private static void AddAutoMapper(IServiceCollection services)
         {
-            services.AddScoped(option =>
-            new AutoMapper.MapperConfiguration(options =>
-            {
-                options.AddProfile(new AutoMapping());
-            }).CreateMapper());
+            var mapperConfig = new MapperConfiguration(cfg => cfg.AddProfile(new AutoMapping()));
+            services.AddSingleton(mapperConfig.CreateMapper());
         }
         private static void AddUseCases(IServiceCollection services)
         {
@@ -52,15 +52,18 @@ namespace TechReserveSystem.Application.Extensions
         private static void AddProcessingServices(IServiceCollection services)
         {
             services.AddScoped<IEquipmentProcessingService, EquipmentProcessingService>();
+            services.AddScoped<IReservationProcessingService, ReservationProcessingService>();
         }
 
         private static void AddBusinessRules(IServiceCollection services)
         {
             services.AddScoped<IEquipmentBusinessRules, EquipmentBusinessRules>();
+            services.AddScoped<IReservationBusinessRules, ReservationBusinessRules>();
         }
-        private static void AddValiddations(IServiceCollection services)
+        private static void AddValidations(IServiceCollection services)
         {
             services.AddScoped<EquipmentValidation>();
+            services.AddScoped<IReservationValidation, ReservationValidation>();
         }
 
     }

@@ -1,13 +1,15 @@
 using FluentValidation;
+using TechReserveSystem.Application.Validations.Reservation.interfaces;
 using TechReserveSystem.Shared.Communication.Request.EquipmentReservation;
 using TechReserveSystem.Shared.Exceptions.Constants;
+using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Validation;
 using TechReserveSystem.Shared.Resources;
 
-namespace TechReserveSystem.Application.Validators.EquipmentReservation
+namespace TechReserveSystem.Application.Validations.Reservation.Implementations
 {
-    public class RegisterReservationValidator : AbstractValidator<EquipmentReservationRequest>
+    public class ReservationValidation : AbstractValidator<EquipmentReservationRequest>, IReservationValidation
     {
-        public RegisterReservationValidator()
+        public ReservationValidation()
         {
             RuleFor(reservation => reservation.UserId)
             .NotEmpty()
@@ -30,6 +32,17 @@ namespace TechReserveSystem.Application.Validators.EquipmentReservation
                       .WithMessage(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_EXPECTED_STARTDATE_INVALID))
             .Must(date => date.Kind == DateTimeKind.Utc || date.Kind == DateTimeKind.Local)
                       .WithMessage(ResourceAppMessages.GetExceptionMessage(ReservationMessagesExceptions.RESERVATION_EXPECTED_STARTDATE_INVALID));
+        }
+
+        public void Validation(EquipmentReservationRequest request)
+        {
+            var result = Validate(request);
+
+            if (!result.IsValid)
+            {
+                var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
+                throw new ErrorOnValidationException(errorMessages);
+            }
         }
     }
 }
