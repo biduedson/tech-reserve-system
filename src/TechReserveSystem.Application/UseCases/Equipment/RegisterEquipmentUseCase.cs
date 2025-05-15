@@ -27,7 +27,7 @@ namespace TechReserveSystem.Application.UseCases.Equipment
 
         public async Task<ResponseRegisteredEquipmentJson> Execute(RequestRegisterEquipmentJson request)
         {
-            var result = await _equipmentProcessingService.RegisterEquipment(request);
+            var result = await _equipmentProcessingService.Register(request);
             return result;
         }
 

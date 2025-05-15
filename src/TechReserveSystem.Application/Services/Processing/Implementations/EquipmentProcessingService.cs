@@ -2,6 +2,7 @@ using AutoMapper;
 using TechReserveSystem.Application.BusinessRules.Interfaces;
 using TechReserveSystem.Application.Services.Processing.Interfaces;
 using TechReserveSystem.Application.Validations.Equipment;
+using TechReserveSystem.Application.Validations.Equipment.Interfaces;
 using TechReserveSystem.Domain.Entities;
 using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentRepository;
@@ -17,13 +18,13 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
     public class EquipmentProcessingService : IEquipmentProcessingService
     {
         private readonly IEquipmentRepository _equipmentRepository;
-        private readonly EquipmentValidation _equipmentValidation;
+        private readonly IEquipmentValidation _equipmentValidation;
         private readonly IEquipmentBusinessRules _equipmentBusinessRules;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         public EquipmentProcessingService(
             IEquipmentRepository equipmentRepository,
-            EquipmentValidation equipmentValidation,
+            IEquipmentValidation equipmentValidation,
             IEquipmentBusinessRules equipmentBusinessRules,
             IUnitOfWork unitOfWork,
             IMapper mapper
@@ -36,14 +37,22 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ResponseRegisteredEquipmentJson> RegisterEquipment(RequestRegisterEquipmentJson request)
+        public async Task<ResponseRegisteredEquipmentJson> Register(RequestRegisterEquipmentJson request)
         {
-            var validationResult = _equipmentValidation.Validate(request);
-            if (!validationResult.IsValid)
-            {
-                var errorMessages = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
-                throw new ErrorOnValidationException(errorMessages);
-            }
+            var result = new ResponseRegisteredEquipmentJson();
+            EnsureValidationRules(request);
+            await EnsureBusinessRules(request, result);
+            return result;
+
+        }
+
+        private void EnsureValidationRules(RequestRegisterEquipmentJson request)
+        {
+            _equipmentValidation.Validation(request);
+        }
+
+        private async Task EnsureBusinessRules(RequestRegisterEquipmentJson request, ResponseRegisteredEquipmentJson result)
+        {
             var equipmentNameAvailable = await _equipmentBusinessRules.IsEquipmentNameAvailable(request.Name);
             var category = await _equipmentBusinessRules.EnsureCategoryExists(request.CategoryId);
             var isAvailableQuantityValid = _equipmentBusinessRules.IsAvailableQuantityValid(request.AvailableQuantity);
@@ -61,12 +70,9 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
             await _equipmentRepository.Add(equipment);
             await _unitOfWork.Commit();
 
-            return new ResponseRegisteredEquipmentJson
-            {
-                Name = equipment.Name,
-                Description = equipment.Description,
-                Category = category.Name
-            };
+            result.Name = equipment.Name;
+            result.Description = equipment.Description;
+            result.Category = category.Name;
         }
     }
 }
