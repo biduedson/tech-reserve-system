@@ -12,7 +12,7 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentRepository
         public EquipmentRepository(AppDbContext dbContext) => _dbContext = dbContext;
 
         public async Task<Equipment?> GetById(Guid id) => await _dbContext.Equipments.FindAsync(id);
-        public async Task<Equipment?> GetByName(string name) => await _dbContext.Equipments.FirstOrDefaultAsync(Equipment => Equipment.Name.Contains(name));
+        public async Task<Equipment?> GetByName(string name) => await _dbContext.Equipments.FirstOrDefaultAsync(Equipment => Equipment.Name.Equals(name));
         public async Task<IEnumerable<Equipment>> GetAll() => await _dbContext.Equipments.ToListAsync();
         public async Task Add(Equipment equipment) => await _dbContext.Equipments.AddAsync(equipment);
         public void Update(Equipment equipment) => _dbContext.Equipments.Update(equipment);
