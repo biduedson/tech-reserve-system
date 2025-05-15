@@ -5,6 +5,6 @@ namespace TechReserveSystem.Application.Services.Processing.Interfaces
 {
     public interface IEquipmentProcessingService
     {
-        Task<ResponseRegisteredEquipmentJson> RegisterEquipment(RequestRegisterEquipmentJson request);
+        Task<ResponseRegisteredEquipmentJson> Register(RequestRegisterEquipmentJson request);
     }
 }

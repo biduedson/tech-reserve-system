@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TechReserveSystem.Application.BusinessRules.Implementations;
 using TechReserveSystem.Application.BusinessRules.Interfaces;
-using TechReserveSystem.Application.Interfaces.Services.Validations;
 using TechReserveSystem.Application.Interfaces.UseCases.Equipment;
 using TechReserveSystem.Application.Interfaces.UseCases.EquipmentCategory;
 using TechReserveSystem.Application.Interfaces.UseCases.EquipmentReservation;
@@ -11,13 +10,13 @@ using TechReserveSystem.Application.Interfaces.UseCases.Login;
 using TechReserveSystem.Application.Services.AutoMapper;
 using TechReserveSystem.Application.Services.Processing.Implementations;
 using TechReserveSystem.Application.Services.Processing.Interfaces;
-using TechReserveSystem.Application.Services.Validations;
 using TechReserveSystem.Application.UseCases.Equipment;
 using TechReserveSystem.Application.UseCases.EquipmentCategory;
 using TechReserveSystem.Application.UseCases.EquipmentReservation;
 using TechReserveSystem.Application.UseCases.Login;
 using TechReserveSystem.Application.UseCases.User.Register;
-using TechReserveSystem.Application.Validations.Equipment;
+using TechReserveSystem.Application.Validations.Equipment.Implementations;
+using TechReserveSystem.Application.Validations.Equipment.Interfaces;
 using TechReserveSystem.Application.Validations.Reservation.Implementations;
 using TechReserveSystem.Application.Validations.Reservation.interfaces;
 
@@ -41,7 +40,6 @@ namespace TechReserveSystem.Application.Extensions
         }
         private static void AddUseCases(IServiceCollection services)
         {
-            services.AddScoped<IReservationValidationService, ReservationValidationService>();
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
             services.AddScoped<IRegisterEquipmentUseCase, RegisterEquipmentUseCase>();
             services.AddScoped<IRegisterEquipmentCategoryUseCase, RegisterEquipmentCategoryUseCase>();
@@ -62,7 +60,7 @@ namespace TechReserveSystem.Application.Extensions
         }
         private static void AddValidations(IServiceCollection services)
         {
-            services.AddScoped<EquipmentValidation>();
+            services.AddScoped<IEquipmentValidation, EquipmentValidation>();
             services.AddScoped<IReservationValidation, ReservationValidation>();
         }
 
