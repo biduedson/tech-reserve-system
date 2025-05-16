@@ -1,4 +1,4 @@
-namespace TechReserveSystem.Application.Interfaces.Services.Security
+namespace TechReserveSystem.Application.Services.Security
 {
     public interface IPasswordHashService
     {

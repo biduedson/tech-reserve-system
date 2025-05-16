@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Configuration;
-using TechReserveSystem.Application.Interfaces.Services.Security;
+using TechReserveSystem.Application.Services.Security;
 
 namespace TechReserveSystem.Infrastructure.Services.Security
 {
