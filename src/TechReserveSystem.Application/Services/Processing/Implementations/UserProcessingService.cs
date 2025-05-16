@@ -45,7 +45,6 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
             EnsureValidationRules(request);
             await EnsureBusinessRules(request);
             var user = MapUserRequestToEntity(request);
-            EnsureSecurity(user);
             await PersistUser(user);
             return user;
         }
@@ -65,14 +64,10 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
         private User MapUserRequestToEntity(RequestRegisterUserJson request)
         {
             var user = _mapper.Map<User>(request);
+            user.Password = _passwordHashService.GeneratePasswordEncrypt(request.Password);
             return user;
         }
 
-        private void EnsureSecurity(User user)
-        {
-            var encnripterPass = _passwordHashService.GeneratePasswordEncrypt(user.Password);
-            user.Password = encnripterPass;
-        }
         private async Task PersistUser(User user)
         {
             await _userRepository.Add(user);
