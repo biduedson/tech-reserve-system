@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using TechReserveSystem.Application.Interfaces.Services.Authentication;
-using TechReserveSystem.Application.Interfaces.Services.Security;
+using TechReserveSystem.Application.Services.Security;
 using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentCategoryRepository;
 using TechReserveSystem.Domain.Interfaces.Repositories.EquipmentRepository;

@@ -19,6 +19,8 @@ using TechReserveSystem.Application.Validations.Equipment.Implementations;
 using TechReserveSystem.Application.Validations.Equipment.Interfaces;
 using TechReserveSystem.Application.Validations.Reservation.Implementations;
 using TechReserveSystem.Application.Validations.Reservation.interfaces;
+using TechReserveSystem.Application.Validations.User.Implementations;
+using TechReserveSystem.Application.Validations.User.Interface;
 
 namespace TechReserveSystem.Application.Extensions
 {
@@ -51,17 +53,20 @@ namespace TechReserveSystem.Application.Extensions
         {
             services.AddScoped<IEquipmentProcessingService, EquipmentProcessingService>();
             services.AddScoped<IReservationProcessingService, ReservationProcessingService>();
+            services.AddScoped<IUserProcessingService, UserProcessingService>();
         }
 
         private static void AddBusinessRules(IServiceCollection services)
         {
             services.AddScoped<IEquipmentBusinessRules, EquipmentBusinessRules>();
             services.AddScoped<IReservationBusinessRules, ReservationBusinessRules>();
+            services.AddScoped<IUserBusinessRules, UserBusinessRules>();
         }
         private static void AddValidations(IServiceCollection services)
         {
             services.AddScoped<IEquipmentValidation, EquipmentValidation>();
             services.AddScoped<IReservationValidation, ReservationValidation>();
+            services.AddScoped<IUserValidation, UserValidation>();
         }
 
     }
