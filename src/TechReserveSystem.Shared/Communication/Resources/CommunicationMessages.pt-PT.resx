@@ -129,4 +129,8 @@
     <value>Nenhum equipamento disponível para reserva na data escolhida.	</value>
     <comment/>
   </data>
+  <data name="OPERATION_SUCCESS" xml:space="preserve">
+    <value>Operação realizada com êxito!</value>
+    <comment/>
+  </data>
 </root>
