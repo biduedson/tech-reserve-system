@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechReserveSystem.Application.Interfaces.UseCases.Equipment;
 using TechReserveSystem.Shared.Communication.Request.Equipment;
+using TechReserveSystem.Shared.Communication.Response;
 using TechReserveSystem.Shared.Communication.Response.Equipment;
 
 namespace TechReserveSystem.API.Controllers.Equipment
@@ -12,7 +13,7 @@ namespace TechReserveSystem.API.Controllers.Equipment
     public class RegisterEquipmentController : ControllerBase
     {
         [HttpPost]
-        [ProducesResponseType(typeof(ResponseRegisteredEquipmentJson), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(Response<ResponseRegisteredEquipmentJson>), StatusCodes.Status201Created)]
         public async Task<IActionResult> Register(
             [FromServices] IRegisterEquipmentUseCase useCase,
             [FromBody] RequestRegisterEquipmentJson request
