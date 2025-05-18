@@ -1,6 +1,7 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using TechReserveSystem.Application.Services.Responses.Interfaces;
 using TechReserveSystem.Shared.Communication.Response.Error;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Business;
@@ -11,54 +12,35 @@ namespace TechReserveSystem.API.Filters
 {
     public class ExceptionFilter : IExceptionFilter
     {
+        private readonly IResponseService<ResponseErrorJson> _responseService;
+
+        public ExceptionFilter(IResponseService<ResponseErrorJson> responseService)
+        {
+            _responseService = responseService;
+        }
+
         public void OnException(ExceptionContext context)
         {
-            if (context.Exception is MyTechReserveSystemException)
-                HandleProjectException(context);
-            else if (context.Exception is NotFoundExceptionError)
-                HandleNotFoundException(context);
-            else if (context.Exception is BusinessException)
-                HandleBusinessException(context);
-            else
-                ThrowUnknownException(context);
+            context.HttpContext.Response.StatusCode = GetStatusCode(context.Exception);
+            context.Result = GetErrorResponse(context.Exception);
         }
 
-        private void HandleProjectException(ExceptionContext context)
-        {
-            if (context.Exception is ErrorOnValidationException)
+        private int GetStatusCode(Exception exception) =>
+            exception switch
             {
-                var exception = context.Exception as ErrorOnValidationException;
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception!.ErrorMessages));
-            }
+                ErrorOnValidationException => (int)HttpStatusCode.BadRequest,
+                BusinessException => (int)HttpStatusCode.BadRequest,
+                NotFoundExceptionError => (int)HttpStatusCode.NotFound,
+                _ => (int)HttpStatusCode.InternalServerError
+            };
 
-        }
-
-        private void HandleNotFoundException(ExceptionContext context)
-        {
-            if (context.Exception is NotFoundExceptionError)
+        private IActionResult GetErrorResponse(Exception exception) =>
+            exception switch
             {
-                var exception = context.Exception as NotFoundExceptionError;
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                context.Result = new NotFoundObjectResult(new ResponseErrorJson(exception!.Message));
-            }
-
-        }
-
-        private void ThrowUnknownException(ExceptionContext context)
-        {
-            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            context.Result = new ObjectResult(new ResponseErrorJson(context.Exception.StackTrace.ToString()));
-        }
-
-        private void HandleBusinessException(ExceptionContext context)
-        {
-            if (context.Exception is BusinessException)
-            {
-                var exception = context.Exception as BusinessException;
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest; // Ou outro código adequado
-                context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception!.Message));
-            }
-        }
+                ErrorOnValidationException e => new BadRequestObjectResult(_responseService.Failure(e.ErrorMessages.ToList())),
+                BusinessException e => new BadRequestObjectResult(_responseService.Failure(e.Message)),
+                NotFoundExceptionError e => new NotFoundObjectResult(_responseService.Failure(e.Message)),
+                _ => new ObjectResult(_responseService.Failure(exception.StackTrace ?? "Erro desconhecido"))
+            };
     }
 }
