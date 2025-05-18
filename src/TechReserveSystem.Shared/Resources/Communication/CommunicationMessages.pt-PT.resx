@@ -133,4 +133,8 @@
     <value>Operação concluída com sucesso!</value>
     <comment/>
   </data>
+  <data name="OPERATION_FAILURE" xml:space="preserve">
+    <value>Ocorreu um erro ao processar a sua solicitação. Consulte os detalhes abaixo.</value>
+    <comment/>
+  </data>
 </root>
