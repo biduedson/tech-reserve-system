@@ -129,4 +129,12 @@
     <value>Nenhum equipamento disponível para reserva na data escolhida.	</value>
     <comment/>
   </data>
+  <data name="OPERATION_SUCCESS" xml:space="preserve">
+    <value>Operação concluída com sucesso!</value>
+    <comment/>
+  </data>
+  <data name="OPERATION_FAILURE" xml:space="preserve">
+    <value>Ocorreu um erro ao processar a sua solicitação. Consulte os detalhes abaixo.</value>
+    <comment/>
+  </data>
 </root>

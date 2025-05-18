@@ -10,6 +10,8 @@ using TechReserveSystem.Application.Interfaces.UseCases.Login;
 using TechReserveSystem.Application.Services.AutoMapper;
 using TechReserveSystem.Application.Services.Processing.Implementations;
 using TechReserveSystem.Application.Services.Processing.Interfaces;
+using TechReserveSystem.Application.Services.Response.Implementations;
+using TechReserveSystem.Application.Services.Responses.Interfaces;
 using TechReserveSystem.Application.UseCases.Equipment;
 using TechReserveSystem.Application.UseCases.EquipmentCategory;
 using TechReserveSystem.Application.UseCases.EquipmentReservation;
@@ -33,12 +35,12 @@ namespace TechReserveSystem.Application.Extensions
             AddProcessingServices(services);
             AddBusinessRules(services);
             AddValidations(services);
+            AddResponseService(services);
         }
 
         private static void AddAutoMapper(IServiceCollection services)
         {
-            var mapperConfig = new MapperConfiguration(cfg => cfg.AddProfile(new AutoMapping()));
-            services.AddSingleton(mapperConfig.CreateMapper());
+            services.AddAutoMapper(typeof(AutoMapping));
         }
         private static void AddUseCases(IServiceCollection services)
         {
@@ -67,6 +69,11 @@ namespace TechReserveSystem.Application.Extensions
             services.AddScoped<IEquipmentValidation, EquipmentValidation>();
             services.AddScoped<IReservationValidation, ReservationValidation>();
             services.AddScoped<IUserValidation, UserValidation>();
+        }
+
+        private static void AddResponseService(IServiceCollection services)
+        {
+            services.AddScoped(typeof(IResponseService<>), typeof(ResponseService<>));
         }
 
     }

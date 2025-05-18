@@ -11,17 +11,27 @@ namespace TechReserveSystem.Application.Services.AutoMapper
     {
         public AutoMapping()
         {
-            RequestToDomain();
+            ConfigureUserMappings();
+            ConfigureEquipmentMappings();
+            ConfigureReservationMappings();
         }
 
-        private void RequestToDomain()
+        private void ConfigureUserMappings()
         {
             CreateMap<RequestRegisterUserJson, User>()
-            .ForMember(dest => dest.Password, opt => opt.Ignore());
+                .ForMember(dest => dest.Password, opt => opt.Ignore());
+        }
 
+        private void ConfigureEquipmentMappings()
+        {
             CreateMap<RequestRegisterEquipmentJson, Equipment>();
             CreateMap<EquipmentCategoryRegisterRequest, EquipmentCategory>();
+        }
+
+        private void ConfigureReservationMappings()
+        {
             CreateMap<EquipmentReservationRequest, EquipmentReservation>();
         }
     }
+
 }

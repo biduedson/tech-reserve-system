@@ -1,6 +1,8 @@
 
 using TechReserveSystem.Application.Services.Processing.Interfaces;
+using TechReserveSystem.Application.Services.Responses.Interfaces;
 using TechReserveSystem.Shared.Communication.Request.User;
+using TechReserveSystem.Shared.Communication.Response;
 using TechReserveSystem.Shared.Communication.Response.User;
 
 
@@ -13,18 +15,14 @@ namespace TechReserveSystem.Application.UseCases.User.Register
 
         public RegisterUserUseCase(IUserProcessingService userProcessingService)
         {
+
             _userProcessingService = userProcessingService;
         }
 
-        public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
+        public async Task<Response<ResponseRegisteredUserJson>> Execute(RequestRegisterUserJson request)
         {
-            var newUser = await _userProcessingService.Register(request);
-
-            return new ResponseRegisteredUserJson
-            {
-                Name = newUser.Name,
-            };
+            var response = await _userProcessingService.Register(request);
+            return response;
         }
-
     }
 }

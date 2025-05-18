@@ -1,6 +1,6 @@
+using System;
 using System.Globalization;
 using System.Resources;
-using System;
 
 
 namespace TechReserveSystem.Shared.Resources
