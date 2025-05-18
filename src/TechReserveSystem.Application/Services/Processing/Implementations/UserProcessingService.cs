@@ -1,12 +1,14 @@
 using AutoMapper;
 using TechReserveSystem.Application.BusinessRules.Interfaces;
 using TechReserveSystem.Application.Services.Processing.Interfaces;
+using TechReserveSystem.Application.Services.Responses.Interfaces;
 using TechReserveSystem.Application.Services.Security;
 using TechReserveSystem.Application.Validations.User.Interface;
 using TechReserveSystem.Domain.Entities;
 using TechReserveSystem.Domain.Interfaces.Repositories;
 using TechReserveSystem.Domain.Interfaces.Repositories.UserRepository;
 using TechReserveSystem.Shared.Communication.Request.User;
+using TechReserveSystem.Shared.Communication.Response;
 using TechReserveSystem.Shared.Communication.Response.User;
 using TechReserveSystem.Shared.Exceptions.Constants;
 using TechReserveSystem.Shared.Exceptions.ExceptionsBase.Business;
@@ -22,6 +24,7 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserValidation _userValidation;
         private readonly IPasswordHashService _passwordHashService;
+        private readonly IResponseService<ResponseRegisteredUserJson> _responseService;
         public UserProcessingService
         (
             IUserRepository userRepository,
@@ -29,7 +32,8 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
             IUserBusinessRules userBusinessRules,
             IUnitOfWork unitOfWork,
             IUserValidation userValidation,
-            IPasswordHashService passwordHashService
+            IPasswordHashService passwordHashService,
+            IResponseService<ResponseRegisteredUserJson> responseService
         )
         {
             _userRepository = userRepository;
@@ -38,15 +42,16 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
             _unitOfWork = unitOfWork;
             _userValidation = userValidation;
             _passwordHashService = passwordHashService;
+            _responseService = responseService;
         }
 
-        public async Task<User> Register(RequestRegisterUserJson request)
+        public async Task<Response<ResponseRegisteredUserJson>> Register(RequestRegisterUserJson request)
         {
             EnsureValidationRules(request);
             await EnsureBusinessRules(request);
             var user = MapUserRequestToEntity(request);
             await PersistUser(user);
-            return user;
+            return Response(user);
         }
 
         private void EnsureValidationRules(RequestRegisterUserJson request)
@@ -72,6 +77,14 @@ namespace TechReserveSystem.Application.Services.Processing.Implementations
         {
             await _userRepository.Add(user);
             await _unitOfWork.Commit();
+        }
+        private Response<ResponseRegisteredUserJson> Response(User user)
+        {
+            var response = new ResponseRegisteredUserJson
+            {
+                Name = user.Name,
+            };
+            return _responseService.Success(response);
         }
 
     }

@@ -12,5 +12,11 @@ namespace TechReserveSystem.Application.Services.Response.Implementations
             var message = ResourceAppMessages.GetCommunicationMessage(ResponseMessages.OPERATION_SUCCESS);
             return new Response<T>(true, message, data);
         }
+
+        public Response<T> Failure(string message, List<string>? errors = null)
+        {
+            var failureMessage = ResourceAppMessages.GetCommunicationMessage(ResponseMessages.OPERATION_FAILURE);
+            return new Response<T>(true, failureMessage, default(T)!, errors);
+        }
     }
 }
