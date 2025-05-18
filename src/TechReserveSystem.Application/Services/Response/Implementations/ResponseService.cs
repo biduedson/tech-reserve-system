@@ -13,10 +13,15 @@ namespace TechReserveSystem.Application.Services.Response.Implementations
             return new Response<T>(true, message, data);
         }
 
-        public Response<T> Failure(string message, List<string>? errors = null)
+        public Response<T> Failure(List<string>? errors)
         {
             var failureMessage = ResourceAppMessages.GetCommunicationMessage(ResponseMessages.OPERATION_FAILURE);
-            return new Response<T>(true, failureMessage, default(T)!, errors);
+            return new Response<T>(false, failureMessage, default(T)!, new List<string>(errors!));
+        }
+        public Response<T> Failure(string error)
+        {
+            var failureMessage = ResourceAppMessages.GetCommunicationMessage(ResponseMessages.OPERATION_FAILURE);
+            return new Response<T>(false, failureMessage, default(T)!, new List<string> { error });
         }
     }
 }
