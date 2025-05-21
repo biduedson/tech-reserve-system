@@ -285,4 +285,12 @@
     <value>Você  Já tem uma reserva para este equipamento nesta data.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_MAX_ADVANCE_LIMIT" xml:space="preserve">
+    <value>Não é possível agendar uma reserva com mais de 30 dias de antecedência.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_MUST_BE_SAME_DAY" xml:space="preserve">
+    <value>A reserva deve ser utilizada e devolvida no mesmo dia.</value>
+    <comment/>
+  </data>
 </root>

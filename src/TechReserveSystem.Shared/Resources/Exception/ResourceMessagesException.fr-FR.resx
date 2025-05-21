@@ -285,4 +285,12 @@
     <value>Vous avez déjà une réservation pour cet équipement à cette date.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_MAX_ADVANCE_LIMIT" xml:space="preserve">
+    <value>La réservation ne peut être faite qu'avec un maximum de 30 jours d'avance.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_MUST_BE_SAME_DAY" xml:space="preserve">
+    <value>La réservation doit être utilisée et retournée le même jour.</value>
+    <comment/>
+  </data>
 </root>
