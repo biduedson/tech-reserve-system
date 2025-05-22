@@ -289,4 +289,12 @@
     <value>You already have a reservation for this equipment on the same date.</value>
     <comment/>
   </data>
+  <data name="RESERVATION_MAX_ADVANCE_LIMIT" xml:space="preserve">
+    <value>The reservation can only be made up to 30 days in advance.</value>
+    <comment/>
+  </data>
+  <data name="RESERVATION_MUST_BE_SAME_DAY" xml:space="preserve">
+    <value>The reservation must be used and returned on the same day.</value>
+    <comment/>
+  </data>
 </root>
