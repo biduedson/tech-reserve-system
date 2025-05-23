@@ -10,6 +10,7 @@ using TechReserveSystem.Application.Interfaces.UseCases.Login;
 using TechReserveSystem.Application.Services.AutoMapper;
 using TechReserveSystem.Application.Services.Processing.Implementations;
 using TechReserveSystem.Application.Services.Processing.Interfaces;
+using TechReserveSystem.Application.Services.Reservation;
 using TechReserveSystem.Application.Services.Response.Implementations;
 using TechReserveSystem.Application.Services.Responses.Interfaces;
 using TechReserveSystem.Application.UseCases.Equipment;
@@ -23,6 +24,7 @@ using TechReserveSystem.Application.Validations.Reservation.Implementations;
 using TechReserveSystem.Application.Validations.Reservation.interfaces;
 using TechReserveSystem.Application.Validations.User.Implementations;
 using TechReserveSystem.Application.Validations.User.Interface;
+using TechReserveSystem.Domain.Interfaces.Services;
 
 namespace TechReserveSystem.Application.Extensions
 {
@@ -35,7 +37,7 @@ namespace TechReserveSystem.Application.Extensions
             AddProcessingServices(services);
             AddBusinessRules(services);
             AddValidations(services);
-            AddResponseService(services);
+            AddServices(services);
         }
 
         private static void AddAutoMapper(IServiceCollection services)
@@ -71,9 +73,10 @@ namespace TechReserveSystem.Application.Extensions
             services.AddScoped<IUserValidation, UserValidation>();
         }
 
-        private static void AddResponseService(IServiceCollection services)
+        private static void AddServices(IServiceCollection services)
         {
             services.AddScoped(typeof(IResponseService<>), typeof(ResponseService<>));
+            services.AddScoped<IReservationService, ReservationService>();
         }
 
     }
