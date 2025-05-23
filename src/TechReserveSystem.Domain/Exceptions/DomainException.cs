@@ -1,7 +1,7 @@
 namespace TechReserveSystem.Domain.Exceptions
 {
-    public abstract class DomainException : ExceptionBase
+    public class DomainException : ExceptionBase
     {
-        protected DomainException(string message) : base(message) { }
+        public DomainException(string message) : base(message) { }
     }
 }
