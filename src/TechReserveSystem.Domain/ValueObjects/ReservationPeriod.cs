@@ -29,7 +29,7 @@ namespace TechReserveSystem.Domain.ValueObjects
             };
 
             if (exceptionMessage is not null)
-                throw new BusinessRuleException(exceptionMessage);
+                throw new DomainException(exceptionMessage);
         }
     }
 }
