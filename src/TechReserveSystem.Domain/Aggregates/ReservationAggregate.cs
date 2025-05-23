@@ -15,16 +15,16 @@ namespace TechReserveSystem.Domain.Aggregates
         public ReservationStatus Status { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
-        public ReservationAggregate(Guid id, Guid userId, Guid equipmentId, int quantity, ReservationPeriod period, ReservationStatus status, DateTime createdAt)
+        public ReservationAggregate(Guid userId, Guid equipmentId, int quantity, ReservationPeriod period)
         {
-            if (quantity <= 0) throw new BusinessRuleException(ReservationErrorMessages.AVAILABLE_QUANTITY_EQUIPMENT_INVALID);
-            Id = id;
+            if (quantity <= 0) throw new DomainException(ReservationErrorMessages.AVAILABLE_QUANTITY_EQUIPMENT_INVALID);
+            Id = new Guid();
             UserId = userId;
             EquipmentId = equipmentId;
             Quantity = quantity;
             Period = period;
-            Status = status;
-            CreatedAt = createdAt;
+            Status = ReservationStatus.Pending;
+            CreatedAt = DateTime.UtcNow;
         }
 
         private void ValidateBusinessRules()
