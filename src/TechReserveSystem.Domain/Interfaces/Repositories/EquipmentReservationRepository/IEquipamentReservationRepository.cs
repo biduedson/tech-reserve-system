@@ -4,6 +4,10 @@ namespace TechReserveSystem.Domain.Interfaces.Repositories.EquipmentReservationR
 {
     public interface IEquipmentReservationRepository
     {
+        Task<bool> UserExisting(Guid userId);
+        Task<bool> EquipmentExisting(Guid equipmentId);
+        Task<int> CountAvailableEquipmentOnDate(Guid equipmentId, DateTime reservationDate);
+        Task<int> GetUserOverdueReservationsCount(Guid userId);
         Task<EquipmentReservation?> GetById(Guid id);
         Task<IEnumerable<EquipmentReservation?>> GetByUserId(Guid userId);
         Task<IEnumerable<EquipmentReservation?>> GetByEquipmetId(Guid equipmentId);

@@ -14,6 +14,40 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.EquipmentReservatio
             _dbContext = dbContext;
         }
 
+        public async Task<bool> UserExisting(Guid userId)
+        {
+            return await _dbContext.Users.FindAsync(userId) != null;
+        }
+
+        public async Task<bool> EquipmentExisting(Guid equipmentId)
+        {
+            return await _dbContext.Equipments.FindAsync(equipmentId) != null;
+        }
+
+        public async Task<int> GetUserOverdueReservationsCount(Guid userId)
+        {
+            return await _dbContext.EquipmentReservations
+         .Where(r => r.UserId == userId
+              && (r.Status == ReservationStatus.Approved.ToString()
+              || r.Status == ReservationStatus.InProgress.ToString())
+              && r.ExpectedReturnDate.Date < DateTime.Now.Date
+              )
+        .CountAsync();
+        }
+        public async Task<int> CountAvailableEquipmentOnDate(Guid equipmentId, DateTime reservationDate)
+        {
+            var stockQuantity = await _dbContext.Equipments
+            .Where(e => e.Id == equipmentId)
+            .Select(e => e.AvailableQuantity)
+            .FirstOrDefaultAsync();
+
+            var reservedCount = await _dbContext.EquipmentReservations
+            .Where(reservation => reservation.EquipmentId == equipmentId
+              && reservation.StartDate.Date == reservationDate.Date
+              && reservation.Status == ReservationStatus.Approved.ToString())
+            .CountAsync();
+            return stockQuantity - reservedCount;
+        }
         public async Task<EquipmentReservation?> GetById(Guid id) => await _dbContext.EquipmentReservations.FindAsync(id);
 
         public async Task<IEnumerable<EquipmentReservation?>> GetByUserId(Guid userId) => await _dbContext.EquipmentReservations
