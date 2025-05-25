@@ -31,6 +31,21 @@ namespace TechReserveSystem.Domain.Aggregates
         {
 
         }
+        private ReservationAggregate(Guid id, Guid userId, Guid equipmentId, int quantity, ReservationPeriod period, ReservationStatus status, DateTime createdAt)
+        {
+            Id = id;
+            UserId = userId;
+            EquipmentId = equipmentId;
+            Quantity = quantity;
+            Period = period;
+            Status = status;
+            CreatedAt = createdAt;
+        }
+        public static ReservationAggregate FromDatabase(Guid id, Guid userId, Guid equipmentId, int quantity, ReservationPeriod period, ReservationStatus status, DateTime createdAt)
+        {
+            return new ReservationAggregate(id, userId, equipmentId, quantity, period, status, createdAt);
+        }
+
         public void Approve() => Status = ReservationStatus.Approved;
         public void Reject() => Status = ReservationStatus.Rejected;
         public void StartUsage() => Status = ReservationStatus.InProgress;
