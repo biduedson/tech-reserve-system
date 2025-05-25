@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechReserveSystem.Infrastructure.Data.Context;
 
@@ -11,9 +12,11 @@ using TechReserveSystem.Infrastructure.Data.Context;
 namespace TechReserveSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250525003536_CreateUserReservationsView")]
+    partial class CreateUserReservationsView
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,9 +152,6 @@ namespace TechReserveSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("TechReserveSystem.Infrastructure.Data.ViewModels.UserReservationViewModel", b =>
                 {
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<Guid>("EquipmentId")
                         .HasColumnType("char(36)");
 
