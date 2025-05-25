@@ -14,7 +14,6 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories.UserRepository
         public async Task<User?> GetById(Guid id)
         {
             var user = await _dbContext.Users
-                 .Include(u => u.EquipmentReservations)
                  .FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }

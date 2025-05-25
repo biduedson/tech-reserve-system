@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TechReserveSystem.Domain.Entities;
+using TechReserveSystem.Infrastructure.Data.ViewModels;
 
 namespace TechReserveSystem.Infrastructure.Data.Context
 {
@@ -9,6 +10,7 @@ namespace TechReserveSystem.Infrastructure.Data.Context
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<EquipmentCategory> EquipmentCategories { get; set; }
         public DbSet<EquipmentReservation> EquipmentReservations { get; set; }
+        public DbSet<UserReservationViewModel> UserReservations { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +28,10 @@ namespace TechReserveSystem.Infrastructure.Data.Context
             modelBuilder.Entity<Equipment>()
                 .HasIndex(e => e.Name)
                 .IsUnique();
+
+            modelBuilder.Entity<UserReservationViewModel>()
+                .ToView("UserReservations")
+                .HasNoKey();
         }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

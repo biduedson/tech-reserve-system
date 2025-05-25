@@ -16,7 +16,7 @@ namespace TechReserveSystem.Domain.Aggregates
         private List<ReservationAggregate> _reservations = new();
         public IReadOnlyCollection<ReservationAggregate> Reservations => _reservations.AsReadOnly();
 
-        public UserAggregate(Guid id, string name, string email, bool isActive, DateTime createdAt, string role)
+        public UserAggregate(Guid id, string name, string email, bool isActive, DateTime createdAt, string role, List<ReservationAggregate> reservations)
         {
             Id = id;
             Name = name;
@@ -24,12 +24,17 @@ namespace TechReserveSystem.Domain.Aggregates
             IsActive = isActive;
             CreatedAt = createdAt;
             Role = role;
+            _reservations = reservations;
         }
 
         public void AddReservation(ReservationAggregate reservation)
         {
             ValidateReservationBeforeAdd(reservation);
             _reservations.Add(reservation);
+        }
+        public void SetReservations(IReadOnlyCollection<ReservationAggregate> reservations)
+        {
+            _reservations = reservations.ToList();
         }
         private bool HasPendingReservations()
         {
