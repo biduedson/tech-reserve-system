@@ -1,8 +1,11 @@
 using AutoMapper;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TechReserveSystem.Application.BusinessRules.Implementations;
 using TechReserveSystem.Application.BusinessRules.Interfaces;
+using TechReserveSystem.Application.EventHandlers;
+using TechReserveSystem.Application.Events.Reservation;
 using TechReserveSystem.Application.Interfaces.UseCases.Equipment;
 using TechReserveSystem.Application.Interfaces.UseCases.EquipmentCategory;
 using TechReserveSystem.Application.Interfaces.UseCases.EquipmentReservation;
@@ -38,6 +41,7 @@ namespace TechReserveSystem.Application.Extensions
             AddBusinessRules(services);
             AddValidations(services);
             AddServices(services);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
         }
 
         private static void AddAutoMapper(IServiceCollection services)
@@ -77,6 +81,11 @@ namespace TechReserveSystem.Application.Extensions
         {
             services.AddScoped(typeof(IResponseService<>), typeof(ResponseService<>));
             services.AddScoped<IReservationService, ReservationService>();
+        }
+
+        private static void AddHandlers(IServiceCollection services)
+        {
+            services.AddScoped<INotificationHandler<MediatRReservationCreatedEvent>, ReservationCreatedEventHandler>();
         }
 
     }
