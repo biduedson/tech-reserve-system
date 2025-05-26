@@ -39,5 +39,24 @@ namespace TechReserveSystem.Infrastructure.Data.Repositories
 
             return userAgragate;
         }
+        public async Task<IReadOnlyCollection<ReservationAggregate>> GetUserReservationsAsync(Guid userId)
+        {
+            var userReservations = await _dbContext.UserReservations
+           .Where(ur => ur.UserId == userId)
+           .ToListAsync();
+
+            var userReservationAggregates = userReservations
+          .Select(r => ReservationAggregate.FromDatabase(
+              r.ReservationId,
+              r.UserId,
+              r.EquipmentId,
+              r.Quantity,
+              new(r.StartDate, r.ExpectedReturnDate),
+             ReservationStatus.Approved,
+              r.CreatedAt))
+          .ToList();
+
+            return userReservationAggregates;
+        }
     }
 }
