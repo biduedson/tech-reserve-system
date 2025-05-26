@@ -297,4 +297,20 @@
     <value>The reservation must be used and returned on the same day.</value>
     <comment/>
   </data>
+  <data name="INVALIDE_EQUIPMENT_STOCK" xml:space="preserve">
+    <value>The equipment stock must be at least 1.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_INCREASE_INVALID" xml:space="preserve">
+    <value>The added stock quantity must be positive.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_DECREASE_INVALID" xml:space="preserve">
+    <value>The removed stock quantity must be positive.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_DECREASE_INSUFFICIENT" xml:space="preserve">
+    <value>You cannot remove more than the available stock.</value>
+    <comment/>
+  </data>
 </root>

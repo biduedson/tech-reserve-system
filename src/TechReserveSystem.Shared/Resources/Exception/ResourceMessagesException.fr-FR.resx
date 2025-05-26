@@ -293,4 +293,20 @@
     <value>La réservation doit être utilisée et retournée le même jour.</value>
     <comment/>
   </data>
+  <data name="INVALIDE_EQUIPMENT_STOCK" xml:space="preserve">
+    <value>Le stock de l'équipement doit être d'au moins 1.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_INCREASE_INVALID" xml:space="preserve">
+    <value>La quantité de stock ajoutée doit être positive.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_DECREASE_INVALID" xml:space="preserve">
+    <value>La quantité de stock supprimée doit être positive.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_DECREASE_INSUFFICIENT" xml:space="preserve">
+    <value>Vous ne pouvez pas retirer plus que le stock disponible.</value>
+    <comment/>
+  </data>
 </root>

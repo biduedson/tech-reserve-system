@@ -297,4 +297,20 @@
     <value>O equipamento deve ser retirado e devolvido no mesmo dia.</value>
     <comment/>
   </data>
+  <data name="INVALIDE_EQUIPMENT_STOCK" xml:space="preserve">
+    <value>O stock do equipamento deve ser pelo menos 1.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_INCREASE_INVALID" xml:space="preserve">
+    <value>A quantidade de estoque adicionada deve ser positiva.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_DECREASE_INVALID" xml:space="preserve">
+    <value>A quantidade de estoque removida deve ser positiva.</value>
+    <comment/>
+  </data>
+  <data name="EQUIPMENT_STOCK_DECREASE_INSUFFICIENT" xml:space="preserve">
+    <value>Você não pode remover uma quantidade maior do que a disponível em estoque.</value>
+    <comment/>
+  </data>
 </root>
