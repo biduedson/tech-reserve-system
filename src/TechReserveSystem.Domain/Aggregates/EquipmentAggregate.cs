@@ -9,8 +9,9 @@ namespace TechReserveSystem.Domain.Aggregates
         public string Name { get; private set; }
         public string Description { get; private set; }
         public int TotalStock { get; private set; }
+        public Guid CategoryId { get; private set; }
 
-        public EquipmentAggregate(Guid id, string name, string description, int totalStock)
+        public EquipmentAggregate(Guid id, string name, string description, int totalStock, Guid categoryId)
         {
             if (totalStock <= 0)
                 throw new DomainException(EquipmentErrorMessages.INVALIDE_EQUIPMENT_STOCK);
@@ -19,6 +20,7 @@ namespace TechReserveSystem.Domain.Aggregates
             Name = name;
             Description = description;
             TotalStock = totalStock;
+            CategoryId = categoryId;
         }
         public void IncreaseStock(int quantity)
         {
